@@ -1,0 +1,26 @@
+header {
+    position: sticky;
+    top: 0;
+    z-index: 99;
+
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 3px solid;
+}
+
+.logo {
+    max-height: 100px;
+    max-width: 70px;
+
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    /* justify-content: space-evenly; */
+    flex-direction: row;
+}
+
+li{
+    margin-left: 60px;
+}
