@@ -6,7 +6,7 @@ import {
 import "./App.css";
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
-import SingleProductPage from './pages/SingleProductPage'
+// import SingleProductPage from './pages/SingleProductPage'
 import NotFoundPage from './pages/NotFound'
 import Layout from "./components/Layout/Layout";
 
@@ -27,10 +27,10 @@ const router = createBrowserRouter([
         path: '/books',
         element: <ProductsPage />
       },
-      {
-        path: '/books/:id',
-        element: <SingleProductPage />
-      },
+      // {
+      //   path: '/books/:id',
+      //   element: <SingleProductPage />
+      // },
       {
         path: '*',
         element: <NotFoundPage />

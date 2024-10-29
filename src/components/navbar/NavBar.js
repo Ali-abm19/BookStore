@@ -1,7 +1,6 @@
 import React from 'react'
 
 import logo from './images/BookIcon.png'
-// import ProductsPage from '../ProductsPage/ProductsPage'
 import styles from './NavBar.module.css'
 
 export default function NavBar() {
