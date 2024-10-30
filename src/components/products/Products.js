@@ -46,7 +46,7 @@ export default function Products() {
   useEffect(() => {
     fetchListFromAPI();
     // eslint-disable-next-line
-  }, [limit, offset, title]);
+  }, [limit, offset, title, max, min]);
 
   if (loading) {
     return <p>Loading...</p>;
