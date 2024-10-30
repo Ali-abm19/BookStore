@@ -7,6 +7,8 @@ import Product from './Product';
 import CustomPagination from './CustomPagination';
 import SearchForBook from '../Forms/SearchForBook';
 import MinMaxPrice from '../Forms/MinMaxPrice';
+import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 export default function Products() {
@@ -69,6 +71,7 @@ export default function Products() {
         {fetchedBooks.map((b) =>
           <div className={styles.book} key={b.bookId} size="3" >
             <Product book={b} />
+            <Link to={"/books/" + b.bookId}>  <Button>details</Button> </Link>
           </div>
         )}
       </Grid >
