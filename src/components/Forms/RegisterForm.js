@@ -26,6 +26,7 @@ export default function RegisterForm({ setEmail, setPassword }) {
                 label="Password"
                 variant="standard"
                 helperText="enter your password"
+                type='password'
                 onChange={onChangeHandlerPassword}
             />
             

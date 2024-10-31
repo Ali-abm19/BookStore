@@ -15,7 +15,7 @@ import { useState } from "react";
 
 function App() {
   const [token, setToken] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [user, setUser] = useState({});
 
   const router = createBrowserRouter([
     {
@@ -42,9 +42,20 @@ function App() {
           path: '/account',
           element: <AccountPage
             isRegistered={false}
-            setIsRegistered={setIsRegistered}
             token={token}
             setToken={setToken}
+            user={user}
+            setUser={setUser}
+          />
+        },
+        {
+          path: '/signIn',
+          element: <AccountPage
+            isRegistered={true}
+            token={token}
+            setToken={setToken}
+            user={user}
+            setUser={setUser}
           />
         },
         {
