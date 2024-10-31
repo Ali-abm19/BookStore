@@ -17,21 +17,22 @@ export default function Products() {
   const [dbBooksCount, setDbBooksCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [limit, setLimit] = useState(1);
-  const [offset, setOffset] = useState(0);
+  const [limit, setLimit] = useState(2);
+  // const [offset, setOffset] = useState(0);
   const [title, setTitle] = useState(" ");
   const [max, setMax] = useState(1000);
   const [min, setMin] = useState(0);
   const [page, setPage] = useState(1);
-  const url = `http://localhost:5125/api/v1/Books?limit=${limit}&offset=${offset}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}`;
+  const url = `http://localhost:5125/api/v1/Books?limit=${limit}&offset=${(page-1)*limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}`;
 
   const handleChange = (event, value) => {
     // const nextValue = value;
     setPage(value);
     //const nextOffset = page * limit - limit;
-    setOffset(page * limit - limit);
   }
 
+
+  console.log(page);
   function fetchListFromAPI() {
     axios.get(url)
       .then((response) => {
@@ -48,7 +49,7 @@ export default function Products() {
   useEffect(() => {
     fetchListFromAPI();
     // eslint-disable-next-line
-  }, [limit, offset, title, max, min, page]);
+  }, [limit, title, max, min, page]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -59,22 +60,23 @@ export default function Products() {
   }
 
   return (
-    <div>
+    <div className={styles.OuterContainer}>
       <SearchForBook
-      setSearchTerm={setTitle}/>
+        setSearchTerm={setTitle} />
       <MinMaxPrice
-      setMaxPrice={setMax}
-      setMinPrice={setMin}
+        setMaxPrice={setMax}
+        setMinPrice={setMin}
       />
 
       <Grid className={styles.booksContainer} container spacing={12} justifyContent={'center'}>
         {fetchedBooks.map((b) =>
           <div className={styles.book} key={b.bookId} size="3" >
             <Product book={b} />
-            <Link to={"/books/" + b.bookId}>  <Button>details</Button> </Link>
+            <Link to={"/books/" + b.bookId}><Button color='F5EDF0' variant="outlined">details</Button></Link>
           </div>
         )}
       </Grid >
+      <br/>
       <CustomPagination handleChange={handleChange}
         limit={limit}
         page={page}

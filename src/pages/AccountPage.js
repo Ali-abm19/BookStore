@@ -72,7 +72,7 @@ export default function Account({ isRegistered, token, setToken , user, setUser}
                 <SignInForm
                     setEmail={setEmail}
                     setPassword={setPassword} />
-                <Button onClick={userSignIn}>Sign In</Button>
+                <Button color='F5EDF0' variant="outlined" onClick={userSignIn}>Sign In</Button>
             </div>
         )
     }
@@ -82,8 +82,8 @@ export default function Account({ isRegistered, token, setToken , user, setUser}
                 <RegisterForm
                     setEmail={setEmail}
                     setPassword={setPassword} />
-                <Button onClick={registerNewUser} >Register</Button>
-                <Button onClick={() => { navigate('/signIn') }} >or Sign-In</Button>
+                <Button color='F5EDF0' variant="outlined" onClick={registerNewUser} >Register</Button>
+                <Button color='F5EDF0' variant="outlined" onClick={() => { navigate('/signIn') }} >or Sign-In</Button>
             </div>
         )
 }

@@ -2,8 +2,12 @@
     /* display: grid;
     grid-template-columns: 2fr 2fr 2fr 2fr;
     margin-left: 8px; */
-    margin-top: 12px;
 
+
+}
+
+.OuterContainer{
+    margin-top: 20px;
 }
 
 .book {

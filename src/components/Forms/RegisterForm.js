@@ -16,7 +16,7 @@ export default function RegisterForm({ setEmail, setPassword }) {
             <TextField
                 id="email"
                 label="Email"
-                variant="standard"
+                variant="outlined"
                 helperText="enter your email"
                 onChange={onChangeHandlerEmail}
             />
@@ -24,7 +24,7 @@ export default function RegisterForm({ setEmail, setPassword }) {
             <TextField
                 id="password"
                 label="Password"
-                variant="standard"
+                variant="outlined"
                 helperText="enter your password"
                 type='password'
                 onChange={onChangeHandlerPassword}
