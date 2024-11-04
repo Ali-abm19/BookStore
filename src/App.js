@@ -39,9 +39,9 @@ function App() {
           element: <SingleProductPage />
         },
         {
-          path: '/account',
+          path: '/signIn',
           element: <AccountPage
-            isRegistered={false}
+            isRegistered={true}
             token={token}
             setToken={setToken}
             user={user}
@@ -49,9 +49,9 @@ function App() {
           />
         },
         {
-          path: '/signIn',
+          path: '/signUp',
           element: <AccountPage
-            isRegistered={true}
+            isRegistered={false}
             token={token}
             setToken={setToken}
             user={user}
