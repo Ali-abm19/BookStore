@@ -20,10 +20,10 @@ export default function NavBar({ user, setUser }) {
 
             {!(isAuthenticated) ?
               <li><Link to="/signIn">Sign In</Link></li>
-              : <></>} 
+              : <></>}
 
             {isAuthenticated ?
-              <li><Link to="/profile">Profile</Link></li>:
+              <li><Link to="/profile">Profile</Link></li> :
               <></>}
 
             {isAuthenticated ?
@@ -32,6 +32,8 @@ export default function NavBar({ user, setUser }) {
                 setUser={setUser}
               /></li>
               : <></>}
+
+            <li><Link to="/dashboard">Dashboard</Link></li>
 
           </ul>
         </nav>

@@ -2,6 +2,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { useState } from "react";
 
 import "./App.css";
 import HomePage from './pages/HomePage'
@@ -10,9 +11,11 @@ import SingleProductPage from './pages/SingleProductPage'
 import NotFoundPage from './pages/NotFound'
 import Layout from "./components/Layout/Layout";
 import AccountPage from "./pages/AccountPage";
-import { useState } from "react";
 import ProtectedRoute from "./components/User/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage";
+import DashboardPage from "./pages/DashboardPage";
+import AdminProducts from "./components/Dashboard/AdminProducts";
+
 
 
 function App() {
@@ -72,6 +75,11 @@ function App() {
             element={<ProfilePage user={user}
               setUser={setUser} />}
           />
+        },
+        {
+          path: '/dashboard',
+          element: <DashboardPage />,
+          children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
         },
         {
           path: '*',
