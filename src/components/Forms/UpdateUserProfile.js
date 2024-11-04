@@ -3,10 +3,11 @@ import React from 'react'
 
 export default function UpdateUserProfile({ userInfoUpdate, setUserInfoUpdate }) {
     function changeHandler(event) {
-        setUserInfoUpdate({
-            [event.target.name]: event.target.value,
-        });
-    console.log(userInfoUpdate);
+        //[event.target.name]: event.target.value,
+        const { name, value } = event.target;
+        setUserInfoUpdate({ ...userInfoUpdate, [name]: value })
+
+        console.log(userInfoUpdate);
     }
 
 

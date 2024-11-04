@@ -3,8 +3,12 @@ import React from 'react'
 import logo from './images/BookIcon.png'
 import styles from './NavBar.module.css'
 import { Link } from 'react-router-dom'
+import Logout from '../User/Logout'
 
-export default function NavBar() {
+export default function NavBar({ user, setUser }) {
+
+  let isAuthenticated = user ? true : false;
+
   return (
     <div id={styles.headerDiv}>
       <header>
@@ -13,8 +17,22 @@ export default function NavBar() {
           <ul>
             <li><Link to="/home">Home</Link></li>
             <li><Link to="/books">Products</Link></li>
-            <li><Link to="/signIn">Account</Link></li>
-            <li><Link to="/profile">Profile</Link></li>
+
+            {!(isAuthenticated) ?
+              <li><Link to="/signIn">Sign In</Link></li>
+              : <></>} 
+
+            {isAuthenticated ?
+              <li><Link to="/profile">Profile</Link></li>:
+              <></>}
+
+            {isAuthenticated ?
+              <li><Logout
+                user={user}
+                setUser={setUser}
+              /></li>
+              : <></>}
+
           </ul>
         </nav>
       </header>

@@ -19,10 +19,13 @@ function App() {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
 
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Layout />,
+      element: <Layout
+        user={user}
+        setUser={setUser} />,
       children: [
         {
           path: '/',
