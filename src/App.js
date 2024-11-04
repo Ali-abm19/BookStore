@@ -11,6 +11,8 @@ import NotFoundPage from './pages/NotFound'
 import Layout from "./components/Layout/Layout";
 import AccountPage from "./pages/AccountPage";
 import { useState } from "react";
+import ProtectedRoute from "./components/User/ProtectedRoute";
+import ProfilePage from "./pages/ProfilePage";
 
 
 function App() {
@@ -56,6 +58,16 @@ function App() {
             setToken={setToken}
             user={user}
             setUser={setUser}
+          />
+        },
+        {
+          path: '/profile',
+          element: <ProtectedRoute
+            token={token}
+            user={user}
+            setUser={setUser}
+            element={<ProfilePage user={user}
+              setUser={setUser} />}
           />
         },
         {

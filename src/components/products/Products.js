@@ -30,9 +30,6 @@ export default function Products() {
     setPage(value);
     //const nextOffset = page * limit - limit;
   }
-
-
-  console.log(page);
   function fetchListFromAPI() {
     axios.get(url)
       .then((response) => {

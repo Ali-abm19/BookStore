@@ -1,7 +1,11 @@
 import React from 'react'
+import ProfileInfo from '../components/User/ProfileInfo'
 
-export default function ProfilePage() {
+export default function ProfilePage({ user, setUser }) {
   return (
-    <div>ProfilePage</div>
+    <ProfileInfo
+      user={user}
+      setUser={setUser}
+    ></ProfileInfo>
   )
 }
