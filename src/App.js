@@ -20,7 +20,7 @@ import AdminProducts from "./components/Dashboard/AdminProducts";
 
 function App() {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
 
   const router = createBrowserRouter([

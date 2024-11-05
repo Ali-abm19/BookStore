@@ -49,7 +49,8 @@ export default function AdminProducts() {
       {fetchedBooks.map((b) =>
         <div key={b.bookId}>
           <Product book={b} />
-          <Button color='F5EDF0' variant="outlined" onClick={deleteHandler(b)}>Delete</Button>
+          <Button color='F5EDF0' variant="outlined" onClick={()=>deleteHandler(b)}>Delete</Button>
+          {/* <Button color='F5EDF0' variant="outlined" onClick={deleteHandler(b)}>Delete</Button> */}
           <br />
         </div>
 
