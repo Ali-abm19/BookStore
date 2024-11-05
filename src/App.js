@@ -72,14 +72,21 @@ function App() {
             token={token}
             user={user}
             setUser={setUser}
+            checkAdmin={false}
             element={<ProfilePage user={user}
               setUser={setUser} />}
           />
         },
+        // {
+        //   path: '/dashboard',
+        //   element: <DashboardPage />,
+        //   children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
+        // },
         {
-          path: '/dashboard',
-          element: <DashboardPage />,
-          children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
+          path: '/dashboard', element: <ProtectedRoute checkAdmin={true} user={user}
+            element={<DashboardPage user={user}/>}
+         />,
+          // children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
         },
         {
           path: '*',
