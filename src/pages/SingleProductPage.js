@@ -42,7 +42,7 @@ export default function SingleProductPage({ product }) {
 
     return (
         <div>
-            <Product book={fetchedProduct}/>
+            <Product book={fetchedProduct} />
         </div>
     )
 }

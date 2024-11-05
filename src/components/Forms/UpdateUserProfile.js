@@ -7,7 +7,7 @@ export default function UpdateUserProfile({ userInfoUpdate, setUserInfoUpdate })
         const { name, value } = event.target;
         setUserInfoUpdate({ ...userInfoUpdate, [name]: value })
 
-        console.log(userInfoUpdate);
+        // console.log(userInfoUpdate);
     }
 
 
