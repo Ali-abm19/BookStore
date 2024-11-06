@@ -9,7 +9,7 @@ export default function MinMaxPrice({ setMinPrice, setMaxPrice }) {
                 id="min"
                 label="Minimum"
                 variant="outlined"
-                helperText="Enter the minimum value"
+                helperText="Enter the minimum price"
                 type='number'
                 onChange={(event) => setMinPrice(event.target.value)}
             />
@@ -17,7 +17,7 @@ export default function MinMaxPrice({ setMinPrice, setMaxPrice }) {
                 id="max"
                 label="Maximum"
                 variant="outlined"
-                helperText="Enter the maximum value"
+                helperText="Enter the maximum price"
                 type='number'
                 onChange={(event) => setMaxPrice(event.target.value)}
             />

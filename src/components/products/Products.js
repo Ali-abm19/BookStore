@@ -20,10 +20,11 @@ export default function Products() {
   const [limit, setLimit] = useState(2);
   // const [offset, setOffset] = useState(0);
   const [title, setTitle] = useState(" ");
+  const [author, setAuthor] = useState(" ");
   const [max, setMax] = useState(1000);
   const [min, setMin] = useState(0);
   const [page, setPage] = useState(1);
-  const url = `http://localhost:5125/api/v1/Books?limit=${limit}&offset=${(page-1)*limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}`;
+  const url = `http://localhost:5125/api/v1/Books?limit=${limit}&offset=${(page - 1) * limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}&SearchByAuthor=${author}`;
 
   const handleChange = (event, value) => {
     // const nextValue = value;
@@ -46,7 +47,7 @@ export default function Products() {
   useEffect(() => {
     fetchListFromAPI();
     // eslint-disable-next-line
-  }, [limit, title, max, min, page]);
+  }, [limit, title, max, min, page, author]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -59,7 +60,8 @@ export default function Products() {
   return (
     <div className={styles.OuterContainer}>
       <SearchForBook
-        setSearchTerm={setTitle} />
+        setTitle={setTitle}
+        setAuthor={setAuthor} />
       <MinMaxPrice
         setMaxPrice={setMax}
         setMinPrice={setMin}
