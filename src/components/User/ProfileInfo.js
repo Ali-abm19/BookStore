@@ -10,7 +10,7 @@ export default function ProfileInfo({ user, setUser }) {
             name: user.name,
             address: user.address,
             phone: user.phone,
-            password: null
+            password: ""
         }
     );
 
@@ -36,10 +36,10 @@ export default function ProfileInfo({ user, setUser }) {
     }
     return (
         <div>
-            <p>email: {user.email}</p>
-            <p>id: {user.userId}</p>
-            <p>name: {user.name}</p>
-            <p>address: {user.address}</p>
+            <p>Email: {user.email}</p>
+            <p>Id: {user.userId}</p>
+            <p>Name: {user.name}</p>
+            <p>Address: {user.address}</p>
 
             <UpdateUserProfile
                 userInfoUpdate={userInfoUpdate}

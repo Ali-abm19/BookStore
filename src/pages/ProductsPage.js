@@ -1,10 +1,13 @@
 import React from 'react'
 import Products from '../components/products/Products'
 
-export default function ProductsPage() {
+export default function ProductsPage({ setCartBooks, cartBooks }) {
   return (
     <div>
-      <Products />
+      <Products
+        setCartBooks={setCartBooks}
+        cartBooks={cartBooks}
+      />
     </div>
   )
 }

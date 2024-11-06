@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Grid from '@mui/material/Grid2';
+import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { enqueueSnackbar } from 'notistack';
 
 import styles from './Product.module.css'
 import Product from './Product';
 import CustomPagination from './CustomPagination';
 import SearchForBook from '../Forms/SearchForBook';
 import MinMaxPrice from '../Forms/MinMaxPrice';
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 
-export default function Products() {
+
+export default function Products({ setCartBooks, cartBooks }) {
 
   const [fetchedBooks, setFetchedBooks] = useState([]);
   const [dbBooksCount, setDbBooksCount] = useState(0);
@@ -24,6 +26,7 @@ export default function Products() {
   const [max, setMax] = useState(1000);
   const [min, setMin] = useState(0);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
   const url = `http://localhost:5125/api/v1/Books?limit=${limit}&offset=${(page - 1) * limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}&SearchByAuthor=${author}`;
 
   const handleChange = (event, value) => {
@@ -57,6 +60,17 @@ export default function Products() {
     return <p>{error}</p>;
   }
 
+  // console.log(cartBooks);
+  function addToCart(book) {
+    if (!(cartBooks.some((b) => b.book.bookId === book.bookId))) {
+      setCartBooks([...cartBooks, {quantity:1,book:book}]);
+      enqueueSnackbar("Book added to cart", { variant: "success" })
+    }
+    else {
+      enqueueSnackbar("Book is already in the cart", { variant: "error" })
+    }
+  }
+
   return (
     <div className={styles.OuterContainer}>
       <SearchForBook
@@ -71,11 +85,13 @@ export default function Products() {
         {fetchedBooks.map((b) =>
           <div className={styles.book} key={b.bookId} size="3" >
             <Product book={b} />
-            <Link to={"/books/" + b.bookId}><Button color='F5EDF0' variant="outlined">details</Button></Link>
+            <Button color='F5EDF0' variant="outlined" onClick={() => navigate(`/books/${b.bookId}`)}>Details</Button>
+            <Button color='F5EDF0' variant="outlined" onClick={() => addToCart(b)}>Add to Cart</Button>
           </div>
         )}
+
       </Grid >
-      <br/>
+      <br />
       <CustomPagination handleChange={handleChange}
         limit={limit}
         page={page}

@@ -15,12 +15,14 @@ import ProtectedRoute from "./components/User/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage";
 import DashboardPage from "./pages/DashboardPage";
 import AdminProducts from "./components/Dashboard/AdminProducts";
+import CartPage from "./pages/CartPage";
 
 
 
 function App() {
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
+  const [cartBooks, setCartBooks] = useState([]);
 
 
   const router = createBrowserRouter([
@@ -40,7 +42,10 @@ function App() {
         },
         {
           path: '/books',
-          element: <ProductsPage />
+          element: <ProductsPage
+            setCartBooks={setCartBooks}
+            cartBooks={cartBooks}
+          />
         },
         {
           path: '/books/:id',
@@ -84,9 +89,17 @@ function App() {
         // },
         {
           path: '/dashboard', element: <ProtectedRoute checkAdmin={true} user={user}
-            element={<DashboardPage user={user}/>}
-         />,
+            element={<DashboardPage user={user} />}
+          />,
           // children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
+        },
+        {
+          path: '/cart',
+          element: <CartPage
+            user={user}
+            cartBooks={cartBooks}
+            setCartBooks={setCartBooks}
+          />
         },
         {
           path: '*',
