@@ -17,7 +17,7 @@ export default function CartPage({ user, cartBooks, setCartBooks }) {
             axios.post("http://localhost:5125/api/v1/Carts", { "userId": user.userId })
                 .then((response) => {
                     console.log(response)
-                    setCartFromDB(response.data.cart)
+                    setCartFromDB(response.data)
                     setLoadingCart(false)
                 }
                 )
@@ -27,14 +27,13 @@ export default function CartPage({ user, cartBooks, setCartBooks }) {
                 })
         }
         else {
-            enqueueSnackbar('you should sign-in before using the cart', { variant: 'error' })
             setLoadingCart(false);
         }
     }
     useEffect(() => {
         createCart();
     }, [loadingCart]);
-
+console.log(cartFromDB);
 
     if (loadingCart === true) {
         return (
@@ -43,6 +42,7 @@ export default function CartPage({ user, cartBooks, setCartBooks }) {
             </div>
         )
     }
+
 
     if (cartBooks.length === 0 || cartBooks === null) {
         return (
