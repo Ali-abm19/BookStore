@@ -4,6 +4,7 @@ import Product from '../products/Product';
 import { Button } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
 import CreateBook from '../Forms/CreateBook';
+import ProductsInDataGrid from '../products/ProductsInDataGrid';
 
 export default function AdminProducts() {
   const [fetchedBooks, setFetchedBooks] = useState([]);
@@ -15,9 +16,9 @@ export default function AdminProducts() {
   const token = localStorage.getItem("token");
 
   function deleteHandler(book) {
-    axios.delete("http://localhost:5125/api/v1/Books/" + book.bookId,
+    axios.delete("http://localhost:5125/api/v1/Books/" + book,
       { headers: { Authorization: `Bearer ${token}` }, })
-      .then((response) => enqueueSnackbar(`Book ${book.title} was Deleted`, { variant: 'info' })
+      .then((response) => enqueueSnackbar(`Book was Deleted`, { variant: 'info' })
       )
       .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
     fetchListFromAPI();
@@ -66,14 +67,14 @@ export default function AdminProducts() {
       ></CreateBook>
       <Button color='F5EDF0' variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button>
 
-      {fetchedBooks.map((b) =>
-        <div key={b.bookId}>
-          <Product book={b} />
-          <Button color='F5EDF0' variant="outlined" onClick={() => deleteHandler(b)}>Delete</Button>
+      {/* {fetchedBooks.map((b) =>
+        <div key={b.bookId}> */}
+          <ProductsInDataGrid books={fetchedBooks} deleteHandler = {deleteHandler} />
+          {/* <Button color='F5EDF0' variant="outlined" onClick={() => deleteHandler(b)}>Delete</Button> */}
           <br />
-        </div>
+        {/* </div> */}
 
-      )}
+      {/* )} */}
     </div>
   )
 }
