@@ -47,8 +47,7 @@ export default function DashboardPage({user}) {
         </Box>
 
         <CustomTabPanel value={value} index={0}>
-          <AdminProducts user={user} /> 
-          {/* user prop possibly not needed */}
+          <AdminProducts /> 
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={1}>
@@ -56,7 +55,7 @@ export default function DashboardPage({user}) {
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={2}>
-          Item Three
+          Orders
         </CustomTabPanel>
       </Box>
     );

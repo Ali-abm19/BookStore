@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 export default function CreateBook({ newBook, setNewBook }) {
     const [categories, setCategories] = useState([]);
+    const [loadingCategories, setLoadingCategories] = useState(true);
 
     function changeHandler(event) {
         const { name, value } = event.target;
@@ -14,16 +15,20 @@ export default function CreateBook({ newBook, setNewBook }) {
         axios.get("http://localhost:5125/api/v1/Categories")
             .then((response) => {
                 setCategories(response.data);
+                setLoadingCategories(false);
             })
             .catch((error) => {
                 console.log(error);
+                setLoadingCategories(false);
             })
     }
 
     useEffect(() => {
         fetchCategories();
         // eslint-disable-next-line
-    }, []);
+    }, [loadingCategories]);
+
+    // console.log(categories[0].categoryName);
 
     return (
         <div>
@@ -80,6 +85,7 @@ export default function CreateBook({ newBook, setNewBook }) {
                 name="bookFormat"
                 label="Book Format"
                 onChange={changeHandler}
+                defaultValue={"Paperback"}
             >
                 <MenuItem value={"Audio"}>Audio</MenuItem>
                 <MenuItem value={"Paperback"}>Paperback</MenuItem>
@@ -87,16 +93,18 @@ export default function CreateBook({ newBook, setNewBook }) {
                 <MenuItem value={"Ebook"}>Ebook</MenuItem>
             </Select>
 
-
             <Select
                 name="categoryName"
                 label="Book Category"
                 onChange={changeHandler}
+
+                defaultValue={"History"}
+
             >
                 {categories.map((category) =>
                     <MenuItem value={category.categoryName} key={category.categoryId}>
                         {category.categoryName}
-                        </MenuItem>
+                    </MenuItem>
                 )}
             </Select>
 

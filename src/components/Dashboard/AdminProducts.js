@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Product from '../products/Product';
-import { Button } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary, Button } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
+
 import CreateBook from '../Forms/CreateBook';
 import ProductsInDataGrid from '../products/ProductsInDataGrid';
 
@@ -61,20 +62,28 @@ export default function AdminProducts() {
   return (
     <div>
       <h1>Admin Books view</h1>
-      <CreateBook
-        newBook={newBook}
-        setNewBook={setNewBook}
-      ></CreateBook>
-      <Button color='F5EDF0' variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button>
 
-      {/* {fetchedBooks.map((b) =>
-        <div key={b.bookId}> */}
+      <Accordion>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          Create Book
+        </AccordionSummary>
+        <AccordionDetails>
+          <CreateBook
+            newBook={newBook}
+            setNewBook={setNewBook}
+          ></CreateBook>
+
+          <Button color='F5EDF0' variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button>
+
+        </AccordionDetails>
+      </Accordion>
           <ProductsInDataGrid books={fetchedBooks} deleteHandler = {deleteHandler} />
-          {/* <Button color='F5EDF0' variant="outlined" onClick={() => deleteHandler(b)}>Delete</Button> */}
           <br />
-        {/* </div> */}
 
-      {/* )} */}
     </div>
   )
 }
