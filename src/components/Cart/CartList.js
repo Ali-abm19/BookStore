@@ -6,13 +6,12 @@ import axios from 'axios';
 
 export default function CartList({ user, cartBooks, setCartBooks, cartFromDB }) {
 
-    // if (cartFromDB.cartItems.length > 0 && cartBooks.length === 0) {
-    //     setCartBooks(cartFromDB.map((elem) => {
-    //         return ({ quantity: elem.quantity, book: elem.book })
-    //     }))
-    // }
+  
+    // if (cartFromDB && cartFromDB.cartItems.length > 0) {
+    //     setCartBooks(cartFromDB.cartItems)}
 
-    console.log(cartFromDB.cartItems);
+
+    // console.log(cartFromDB.cartItems);
     function increaseAmount(id) {
         setCartBooks(cartBooks.map((elem) => {
             if (id === elem.book.bookId) {

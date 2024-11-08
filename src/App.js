@@ -14,7 +14,6 @@ import AccountPage from "./pages/AccountPage";
 import ProtectedRoute from "./components/User/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage";
 import DashboardPage from "./pages/DashboardPage";
-import AdminProducts from "./components/Dashboard/AdminProducts";
 import CartPage from "./pages/CartPage";
 
 

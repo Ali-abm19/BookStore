@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Box, Tab, Tabs } from '@mui/material';
 
 import AdminProducts from '../components/Dashboard/AdminProducts'
-import { Box, Tab, Tabs } from '@mui/material';
 import AdminUsers from '../components/Dashboard/AdminUsers';
 
 export default function DashboardPage({user}) {
@@ -42,7 +41,7 @@ export default function DashboardPage({user}) {
           <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="Books" {...a11yProps(0)} />
             <Tab label="Users" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="Orders" {...a11yProps(2)} />
           </Tabs>
         </Box>
 
@@ -61,18 +60,3 @@ export default function DashboardPage({user}) {
     );
   }
   
-
-
-
-
-//   return (
-//     <div>
-//       {/* <Link to="/dashboard/books">Books</Link>
-//       <Outlet /> */}
-//       <AdminProducts user={user} />
-
-      
-//     </div>
-    
-//   )
-// }

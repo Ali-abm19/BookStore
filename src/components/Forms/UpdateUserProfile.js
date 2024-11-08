@@ -3,11 +3,9 @@ import React from 'react'
 
 export default function UpdateUserProfile({ userInfoUpdate, setUserInfoUpdate }) {
     function changeHandler(event) {
-        //[event.target.name]: event.target.value,
         const { name, value } = event.target;
         setUserInfoUpdate({ ...userInfoUpdate, [name]: value })
 
-        // console.log(userInfoUpdate);
     }
 
 
@@ -17,8 +15,9 @@ export default function UpdateUserProfile({ userInfoUpdate, setUserInfoUpdate })
                 name="password"
                 label="password"
                 variant="outlined"
-                helperText="enter the new password"
+                helperText="enter the new or old password"
                 type='password'
+                required='true'
                 onChange={changeHandler}
             />
             <TextField
