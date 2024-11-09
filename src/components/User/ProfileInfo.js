@@ -45,14 +45,14 @@ export default function ProfileInfo({ user, setUser }) {
             )
     }
     return (
-        <div style={{ justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: "flex",flexDirection:"column", justifyContent: "center", alignItems: "center" }}>
             <p>Email: {user.email}</p>
             <p>Id: {user.userId}</p>
             <p>Name: {user.name}</p>
             <p>Phone: {user.phone}</p>
             <p>Address: {user.address}</p>
 
-            <Accordion style={{maxWidth: "550px", display:"flex", flexDirection:"column", justifyContent: "center", alignItems: "center"}}>
+            <Accordion style={{ maxWidth: "550px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
