@@ -67,7 +67,7 @@ export default function CartListBackend({ user, cartBooks }) {
       enqueueSnackbar("please sign-in first", { variant: 'error' });
   }
 
-  function getCart(id) {
+  async function getCart(id) {
     axios.get("http://localhost:5125/api/v1/Cart/" + id,
       { headers: { Authorization: `Bearer ${token}` }, }
     )
@@ -80,7 +80,7 @@ export default function CartListBackend({ user, cartBooks }) {
       });
   }
 
-  function updateCartItem(id, newQuantity) {
+ async function updateCartItem(id, newQuantity) {
     axios.put("http://localhost:5125/api/v1/CartItems/" + id,
       { "quantity": newQuantity },
       { headers: { Authorization: `Bearer ${token}` }, }
@@ -119,27 +119,27 @@ export default function CartListBackend({ user, cartBooks }) {
       return elem
     }));
   }
-  function decreaseAmount(id) {
+ async function decreaseAmount(id) {
     console.log(cartFromDB.cartItems);
-    setCartFromDB(cartFromDB.cartItems.map((elem) => {
+    setCartFromDB(cartFromDB.cartItems.map(async (elem) => {
       if (id === elem.book.bookId) {
         if (elem.quantity - 1 === 0) {
           elem.quantity = 1;
         }
         else {
           elem.quantity--;
-          updateCartItem(elem.cartItemsId, elem.quantity);
-          getCart(cartFromDB.cartId);
+          await updateCartItem(elem.cartItemsId, elem.quantity);
+          await getCart(cartFromDB.cartId);
         }
       }
       return elem
     }));
   }
 
-  function deleteBook(id) {
+  async function deleteBook(id) {
     setCartFromDB(cartFromDB.filter((items) => items.book.bookId !== id))
     deleteCartItem(id);
-    getCart(cartFromDB.cartId);
+    await getCart(cartFromDB.cartId);
 
   }
 

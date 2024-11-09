@@ -25,6 +25,26 @@ export default function AdminProducts() {
     fetchListFromAPI();
   }
 
+  function updateHandler(book) {
+    axios.put("http://localhost:5125/api/v1/Books/" + book.id, {
+
+      "isbn": book.isbn,
+      "title": book.title,
+      "author": book.author,
+      "price": book.price,
+      "stockQuantity": book.stockQuantity,
+      "image": book.image,
+      "CategoryId": fetchedBooks.find(x => x.bookId === book.id).category.categoryId
+    }
+
+      ,
+      { headers: { Authorization: `Bearer ${token}` }, })
+      .then((response) => enqueueSnackbar(`Book was updated`, { variant: 'info' })
+      )
+      .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
+    fetchListFromAPI();
+  }
+
   function createBookHandler(book) {
     axios.post("http://localhost:5125/api/v1/Books/", book,
       { headers: { Authorization: `Bearer ${token}` }, })
@@ -81,8 +101,11 @@ export default function AdminProducts() {
 
         </AccordionDetails>
       </Accordion>
-          <ProductsInDataGrid books={fetchedBooks} deleteHandler = {deleteHandler} />
-          <br />
+      <ProductsInDataGrid
+        books={fetchedBooks}
+        deleteHandler={deleteHandler}
+        updateHandler={updateHandler} />
+      <br />
 
     </div>
   )

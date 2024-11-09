@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
 
-export default function ProductsInDataGrid({ books, deleteHandler }) {
+export default function ProductsInDataGrid({ books, deleteHandler, updateHandler }) {
     const [selected, setSelected] = useState();
 
     function deleteSelectedItems() {
@@ -18,37 +18,37 @@ export default function ProductsInDataGrid({ books, deleteHandler }) {
             field: 'author',
             headerName: 'Author',
             width: 170,
-            editable: false,
+            editable: true,
         },
         {
             field: 'title',
             headerName: 'Title',
             width: 170,
-            editable: false,
+            editable: true,
         },
         {
             field: 'isbn',
             headerName: 'ISBN',
             width: 150,
-            editable: false,
+            editable: true,
         },
         {
             field: 'price',
             headerName: 'Price',
             width: 70,
-            editable: false,
+            editable: true,
         },
         {
             field: 'stockQuantity',
             headerName: 'Stock',
             width: 90,
-            editable: false,
+            editable: true,
         },
         {
             field: 'image',
             headerName: 'Image Source',
             width: 150,
-            editable: false,
+            editable: true,
         },
         {
             field: 'category',
@@ -88,9 +88,16 @@ export default function ProductsInDataGrid({ books, deleteHandler }) {
                 checkboxSelection
                 disableRowSelectionOnClick
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
+                processRowUpdate={(updatedRow, originalRow) =>{
+                    console.log(updatedRow)
+                    updateHandler(updatedRow);
+                }
+                }
 
             />
             <Button color='F5EDF0' variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
+            {/* <Button color='F5EDF0' variant="outlined" onClick={() => updateSelectedItems()}>Update Selected</Button> */}
+
         </Box>
 
 
