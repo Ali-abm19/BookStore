@@ -16,7 +16,7 @@ export default function NavBar({ user, setUser }) {
         <nav>
           <ul>
             <li><Link to="/home">Home</Link></li>
-            <li><Link to="/books">Products</Link></li>
+            <li><Link to="/books">Books</Link></li>
             <li><Link to="/cart">Cart</Link></li>
 
             {!(isAuthenticated) ?

@@ -2,16 +2,10 @@ import React, { useState } from 'react'
 import Product from '../products/Product';
 import { Button } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
-import axios from 'axios';
-
-export default function CartList({ user, cartBooks, setCartBooks, cartFromDB }) {
-
-  
-    // if (cartFromDB && cartFromDB.cartItems.length > 0) {
-    //     setCartBooks(cartFromDB.cartItems)}
 
 
-    // console.log(cartFromDB.cartItems);
+export default function CartList({ user, cartBooks, setCartBooks, setLoggedIn }) {
+
     function increaseAmount(id) {
         setCartBooks(cartBooks.map((elem) => {
             if (id === elem.book.bookId) {
@@ -38,34 +32,18 @@ export default function CartList({ user, cartBooks, setCartBooks, cartFromDB }) 
         }));
     }
 
-    function submitToBackend(cartBooks) {
-        if (user != null) {
-            cartBooks.map((item) => {
-                axios.post("http://localhost:5125/api/v1/CartItems", {
-                    bookId: item.book.bookId,
-                    cartId: cartFromDB.cartId,
-                    quantity: item.quantity
-
-                })
-                    .then((response) => {
-                        console.log(response)
-                        //setCartFromDB(response.data.cart)
-                    }
-                    )
-                    .catch((error) => {
-                        console.log(error)
-                    })
-            })
-        }
-        else
-            enqueueSnackbar("please sign-in first", { variant: 'error' });
-    }
-
     function deleteBook(id) {
         setCartBooks(cartBooks.filter((items) => items.book.bookId !== id))
     }
 
-    console.log(cartBooks);
+    function checkOut() {
+        if (!user) {
+            enqueueSnackbar("please sign-in first", { variant: 'error' });
+        }
+        else {
+            setLoggedIn(true);
+        }
+    }
 
     return (
         <div>
@@ -79,7 +57,7 @@ export default function CartList({ user, cartBooks, setCartBooks, cartFromDB }) 
                     <Button color='F5EDF0' variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
                 </div>
             )}
-            <Button color='F5EDF0' variant="outlined" onClick={() => (submitToBackend(cartBooks))}>Submit</Button>
+            <Button color='F5EDF0' variant="outlined" onClick={() => checkOut()}>Checkout</Button>
 
         </div>
     )
