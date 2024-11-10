@@ -69,5 +69,5 @@ export default function OrdersInDataGrid({ orders, deleteHandler }) {
         </Box>
 
 
-    );
+            );
 }

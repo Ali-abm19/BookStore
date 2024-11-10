@@ -48,7 +48,7 @@ export default function AdminOrders() {
 
         return (
             <div>
-                <h1>Admin Orders view</h1>
+                <h1>Admin Orders View</h1>
                 <OrdersInDataGrid orders={fetchedOrders}/>
             </div>
         )

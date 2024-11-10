@@ -4,6 +4,7 @@ import { Box, Tab, Tabs } from '@mui/material';
 import AdminProducts from '../components/Dashboard/AdminProducts'
 import AdminUsers from '../components/Dashboard/AdminUsers';
 import AdminOrders from '../components/Dashboard/AdminOrders';
+import AdminCategories from '../components/Dashboard/AdminCategories';
 
 export default function DashboardPage({ user }) {
 
@@ -43,6 +44,7 @@ export default function DashboardPage({ user }) {
           <Tab label="Books" {...a11yProps(0)} />
           <Tab label="Users" {...a11yProps(1)} />
           <Tab label="Orders" {...a11yProps(2)} />
+          <Tab label="Categories" {...a11yProps(3)} />
         </Tabs>
       </Box>
 
@@ -56,6 +58,10 @@ export default function DashboardPage({ user }) {
 
       <CustomTabPanel value={value} index={2}>
         <AdminOrders />
+      </CustomTabPanel>
+
+      <CustomTabPanel value={value} index={3}>
+        <AdminCategories />
       </CustomTabPanel>
     </Box>
   );

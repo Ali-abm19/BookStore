@@ -30,6 +30,7 @@ export default function CreateBook({ newBook, setNewBook }) {
 
     // console.log(categories[0].categoryName);
 
+    if(loadingCategories)
     return (
         <div>
             <TextField
@@ -97,8 +98,7 @@ export default function CreateBook({ newBook, setNewBook }) {
                 name="categoryName"
                 label="Book Category"
                 onChange={changeHandler}
-
-                defaultValue={"History"}
+                // defaultValue={categories[0].categoryName || ""}
 
             >
                 {categories.map((category) =>
@@ -111,4 +111,9 @@ export default function CreateBook({ newBook, setNewBook }) {
 
         </div>
     )
+    else{
+        <div>
+            loading...
+        </div>
+    }
 }
