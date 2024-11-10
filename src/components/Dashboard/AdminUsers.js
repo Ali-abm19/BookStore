@@ -48,9 +48,6 @@ export default function AdminUsers() {
     return (
         <div>
             <h1>Admin Users view</h1>
-
-            {/* <Button color='F5EDF0' variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button> */}
-
             <UsersInDataGrid users={fetchedUsers} deleteHandler={deleteHandler} />
         </div>
     )

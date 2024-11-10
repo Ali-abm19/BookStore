@@ -3,12 +3,15 @@ import { Button } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import Product from '../products/Product';
+import { useNavigate } from 'react-router-dom';
+import CheckoutItem from './CheckoutItem';
 
-export default function CartListBackend({ user, cartBooks }) {
+export default function CartListBackend({ user, cartBooks, setCartBooks, setLoggedIn }) {
 
   const [cartFromDB, setCartFromDB] = useState();
   const [loadingCart, setLoadingCart] = useState(true);
   const token = localStorage.getItem('token')
+  const navigate = useNavigate();
 
   //functions
 
@@ -20,7 +23,10 @@ export default function CartListBackend({ user, cartBooks }) {
         .then((response) => {
           setCartFromDB(response.data)
           setLoadingCart(false)
+          // if (cartBooks.length > 0)
           submitAllItemsToBackend(cartBooks);
+          // setCartBooks();
+
         }
         )
         .catch((error) => {
@@ -68,29 +74,27 @@ export default function CartListBackend({ user, cartBooks }) {
   }
 
   async function getCart(id) {
-    axios.get("http://localhost:5125/api/v1/Cart/" + id,
-      { headers: { Authorization: `Bearer ${token}` }, }
-    )
-      .then((response) => {
-        setCartFromDB(response.data)
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const response = await axios.get("http://localhost:5125/api/v1/Carts/" + id,
+        { headers: { Authorization: `Bearer ${token}` }, }
+      )
+      setCartFromDB(response.data)
+      console.log(response);
+
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
- async function updateCartItem(id, newQuantity) {
-    axios.put("http://localhost:5125/api/v1/CartItems/" + id,
-      { "quantity": newQuantity },
-      { headers: { Authorization: `Bearer ${token}` }, }
-    )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  async function updateCartItem(id, newQuantity) {
+    try {
+      const response = await axios.put("http://localhost:5125/api/v1/CartItems/" + id, { "quantity": newQuantity }, { headers: { Authorization: `Bearer ${token}` }, })
+      const data = response;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function deleteCartItem(id) {
@@ -106,22 +110,24 @@ export default function CartListBackend({ user, cartBooks }) {
   }
 
   function increaseAmount(id) {
-    setCartFromDB(cartFromDB.cartItems.map((elem) => {
+    cartFromDB.cartItems.map(async (elem) => {
       if (id === elem.book.bookId) {
         if (elem.book.stockQuantity >= elem.quantity + 1) {
           elem.quantity++;
           updateCartItem(elem.cartItemsId, elem.quantity)
+          await getCart(cartFromDB.cartId);
         }
         else {
           enqueueSnackbar('you have exceeded the available stock', { variant: 'warning' })
         }
       }
       return elem
-    }));
+    });
   }
- async function decreaseAmount(id) {
+
+  function decreaseAmount(id) {
     console.log(cartFromDB.cartItems);
-    setCartFromDB(cartFromDB.cartItems.map(async (elem) => {
+    cartFromDB.cartItems.map(async (elem) => {
       if (id === elem.book.bookId) {
         if (elem.quantity - 1 === 0) {
           elem.quantity = 1;
@@ -133,14 +139,25 @@ export default function CartListBackend({ user, cartBooks }) {
         }
       }
       return elem
-    }));
+    });
+
   }
 
-  async function deleteBook(id) {
-    setCartFromDB(cartFromDB.filter((items) => items.book.bookId !== id))
-    deleteCartItem(id);
-    await getCart(cartFromDB.cartId);
+  console.log(cartFromDB);
 
+  async function deleteBook(id) {
+    deleteCartItem(cartFromDB.cartItems.find((items) => items.book.bookId === id).cartItemsId);
+    await getCart(cartFromDB.cartId);
+  }
+
+  async function placeOrder() {
+    try {
+      const response = await axios.post("http://localhost:5125/api/v1/Orders", { "cartId": cartFromDB.cartId }, { headers: { Authorization: `Bearer ${token}` }, })
+      const data = response;
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
@@ -163,22 +180,33 @@ export default function CartListBackend({ user, cartBooks }) {
     )
   }
 
-  return (
-    <div>
-      {cartFromDB.cartItems.map((element) =>
-        <div key={element.book.bookId}>
-          <Product book={element.book}></Product>
-          <p>{element.quantity}</p>
-          <Button color='F5EDF0' variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
-          <Button color='F5EDF0' variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
-          <br></br>
-          <Button color='F5EDF0' variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
-        </div>
-      )}
-      {/* <Button color='F5EDF0' variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Order</Button> */}
+  if (cartFromDB) {
+    return (
+      <div>
+        {cartFromDB.cartItems.map((element) =>
+          <div key={element.book.bookId}>
+            <CheckoutItem element={element} />
+            {/* <Product book={element.book}></Product>
+            <p>{element.quantity}</p> */}
 
-    </div>
-  )
+
+            <Button color='F5EDF0' variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
+            <Button color='F5EDF0' variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
+            <br></br>
+            <Button color='F5EDF0' variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
+          </div>
+        )}
+        <div style={{ marginBottom: '1px' }}>
+          <Button color='F5EDF0' variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Place Order</Button>
+          <Button color='F5EDF0' variant="outlined" onClick={() => navigate('/books')}>Back to Collection</Button>
+        </div>
+
+      </div>
+    )
+  }
+  else {
+    <div>loading...</div>
+  }
 }
 
 

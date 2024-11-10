@@ -7,33 +7,27 @@ import { enqueueSnackbar } from 'notistack';
 import CartListBackend from '../components/Cart/CartListBackend';
 
 export default function CartPage({ user, cartBooks, setCartBooks }) {
-    const navigate = useNavigate();
-    const[ loggedIn, setLoggedIn] = useState(false);
+    //const navigate = useNavigate();
+    const [loggedIn, setLoggedIn] = useState(false);
 
-    if (cartBooks.length === 0 || cartBooks === null) {
+    if (loggedIn) {
         return (
-            <div>
-                <h1>The Cart is empty</h1>
-                <Button color='F5EDF0' variant="outlined" onClick={() => navigate('/books')}>Explore Books</Button>
-            </div>
-        )
-    }
-    if(loggedIn){
-        return(
             <CartListBackend
                 user={user}
                 cartBooks={cartBooks}
+                setCartBooks={setCartBooks}
+                setLoggedIn={setLoggedIn}
             />
         )
     }
 
     else
-    return (
-        <CartList
-            user={user}
-            setCartBooks={setCartBooks}
-            cartBooks={cartBooks}
-            setLoggedIn={setLoggedIn}
-        />
-    )
+        return (
+            <CartList
+                user={user}
+                setCartBooks={setCartBooks}
+                cartBooks={cartBooks}
+                setLoggedIn={setLoggedIn}
+            />
+        )
 }
