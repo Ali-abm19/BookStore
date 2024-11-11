@@ -45,7 +45,7 @@ export default function ProfileInfo({ user, setUser }) {
             )
     }
     return (
-        <div style={{ display: "flex",flexDirection:"column", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <p>Email: {user.email}</p>
             <p>Id: {user.userId}</p>
             <p>Name: {user.name}</p>
@@ -66,7 +66,7 @@ export default function ProfileInfo({ user, setUser }) {
                         userInfoUpdate={userInfoUpdate}
                         setUserInfoUpdate={setUserInfoUpdate}
                     ></UpdateUserProfile>
-                    <Button color='F5EDF0' variant="outlined" onClick={updateUserProfile}>Update Account</Button>
+                    <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={updateUserProfile}>Update Account</Button>
 
                 </AccordionDetails>
             </Accordion>

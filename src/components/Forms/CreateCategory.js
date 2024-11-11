@@ -8,25 +8,6 @@ export default function CreateCategory({ category, setCategory }) {
         setCategory({ ...category, [name]: value })
     }
 
-    // function fetchCategories() {
-    //     axios.get("http://localhost:5125/api/v1/Categories")
-    //         .then((response) => {
-    //             setCategories(response.data);
-    //             setLoadingCategories(false);
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //             setLoadingCategories(false);
-    //         })
-    // }
-
-    // useEffect(() => {
-    //     fetchCategories();
-    //     // eslint-disable-next-line
-    // }, [loadingCategories]);
-
-    // console.log(categories[0].categoryName);
-
     return (
         <div>
             <TextField

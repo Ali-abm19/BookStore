@@ -190,15 +190,15 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
             <p>{element.quantity}</p> */}
 
 
-            <Button color='F5EDF0' variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
-            <Button color='F5EDF0' variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
             <br></br>
-            <Button color='F5EDF0' variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
           </div>
         )}
         <div style={{ marginBottom: '1px' }}>
-          <Button color='F5EDF0' variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Place Order</Button>
-          <Button color='F5EDF0' variant="outlined" onClick={() => navigate('/books')}>Back to Collection</Button>
+          <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Place Order</Button>
+          <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => navigate('/books')}>Back to Collection</Button>
         </div>
 
       </div>

@@ -54,8 +54,10 @@ export default function SignIn({ token, setToken, user, setUser }) {
             <SignInForm
                 setEmail={setEmail}
                 setPassword={setPassword} />
-            <Button color='F5EDF0' variant="outlined" onClick={userSignIn}>Sign In</Button>
-            <Button color='F5EDF0' variant="outlined" onClick={() => { navigate('/signUp') }} >or Sign-Up</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={userSignIn}>Sign In</Button>
+
+            <p>Or if you don't have an account:</p>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => { navigate('/signUp') }} >Sign-Up</Button>
         </div>
     )
 }

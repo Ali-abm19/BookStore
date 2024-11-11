@@ -92,13 +92,13 @@ export default function AdminProducts() {
           Create Book
         </AccordionSummary>
         <AccordionDetails>
+
           <CreateBook
+
             newBook={newBook}
             setNewBook={setNewBook}
-          ></CreateBook>
-
-          <Button color='F5EDF0' variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button>
-
+          />
+          <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button>
         </AccordionDetails>
       </Accordion>
       <ProductsInDataGrid

@@ -53,8 +53,10 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
             <RegisterForm
                 setEmail={setEmail}
                 setPassword={setPassword} />
-            <Button color='F5EDF0' variant="outlined" onClick={registerNewUser} >Register</Button>
-            <Button color='F5EDF0' variant="outlined" onClick={() => { navigate('/signIn') }} >or Sign-in</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={registerNewUser} >Register</Button>
+
+            <p>If you already have an account:</p>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => { navigate('/signIn') }} >Sign-in</Button>
         </div>
     )
 }

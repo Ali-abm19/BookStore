@@ -54,7 +54,7 @@ export default function UsersInDataGrid({ users, deleteHandler }) {
             address: user.address,
             email: user.email,
             phone: user.phone,
-            role: user.role, 
+            role: user.role,
         }
     })
 
@@ -78,7 +78,7 @@ export default function UsersInDataGrid({ users, deleteHandler }) {
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
 
             />
-            <Button color='F5EDF0' variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
         </Box>
 
 

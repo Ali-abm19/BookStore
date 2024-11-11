@@ -65,9 +65,9 @@ export default function OrdersInDataGrid({ orders, deleteHandler }) {
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
 
             />
-            <Button color='F5EDF0' variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
         </Box>
 
 
-            );
+    );
 }

@@ -5,26 +5,20 @@ import React, { useState } from 'react'
 export default function CategoriesInDataGrid({ categories }) {
     const [selected, setSelected] = useState();
 
-    // function deleteSelectedItems() {
-    //     // selected.forEach(element => {
-    //     //     deleteHandler(element);
-    //     // });
-    // }
-
     console.log(categories);
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 150 },
+        { field: 'id', headerName: 'ID', width: 380 },
         {
             field: 'categoryName',
             headerName: 'Name',
-            width: 170,
+            width: 180,
             editable: false,
         },
         {
             field: 'description',
             headerName: 'Description',
-            width: 220,
+            width: 400,
             editable: false,
         },
     ];
@@ -50,12 +44,11 @@ export default function CategoriesInDataGrid({ categories }) {
                     },
                 }}
                 pageSizeOptions={[10]}
-                checkboxSelection
                 disableRowSelectionOnClick
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
 
             />
-            {/* <Button color='F5EDF0' variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button> */}
+            {/* <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button> */}
         </Box>
 
 

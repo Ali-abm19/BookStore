@@ -63,7 +63,7 @@ export default function Products({ setCartBooks, cartBooks }) {
   // console.log(cartBooks);
   function addToCart(book) {
     if (!(cartBooks.some((b) => b.book.bookId === book.bookId))) {
-      setCartBooks([...cartBooks, {quantity:1,book:book}]);
+      setCartBooks([...cartBooks, { quantity: 1, book: book }]);
       enqueueSnackbar("Book added to cart", { variant: "success" })
     }
     else {
@@ -85,8 +85,8 @@ export default function Products({ setCartBooks, cartBooks }) {
         {fetchedBooks.map((b) =>
           <div className={styles.book} key={b.bookId} size="3" >
             <Product book={b} />
-            <Button color='F5EDF0' variant="outlined" onClick={() => navigate(`/books/${b.bookId}`)}>Details</Button>
-            <Button color='F5EDF0' variant="outlined" onClick={() => addToCart(b)}>Add to Cart</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => navigate(`/books/${b.bookId}`)}>Details</Button>
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => addToCart(b)}>Add to Cart</Button>
           </div>
         )}
 

@@ -31,7 +31,7 @@ export default function AdminCategories() {
         fetchListFromAPI();
     }, []);
 
-    function createCateHandler(){
+    function createCateHandler() {
         axios.post("http://localhost:5125/api/v1/Categories", category,
             { headers: { Authorization: `Bearer ${token}` } }
         )
@@ -65,13 +65,10 @@ export default function AdminCategories() {
                         setCategory={setCategory} >
                     </CreateCategory>
 
-                    <Button color='F5EDF0' variant="outlined" onClick={() => { createCateHandler() }} >Create Category</Button>
+                    <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => { createCateHandler() }} >Create Category</Button>
 
                 </AccordionDetails>
             </Accordion>
-
-
-
 
             <CategoriesInDataGrid categories={fetchedCats} />
         </div>
