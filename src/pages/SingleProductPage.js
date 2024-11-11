@@ -48,16 +48,19 @@ export default function SingleProductPage({ product }) {
                 display: 'flex', flexDirection: 'column',
                 alignItems: 'center', justifyContent: 'center'
             }}>
-            <p>{fetchedProduct.title}</p>
-            <p>{fetchedProduct.price}$</p>
-            <p>{fetchedProduct.author}</p>
-            <p>{fetchedProduct.category.categoryName}</p>
+
+            <div style={{width:'75%',display:'flex', justifyContent:'space-between'}}>
+            <p>Book: {fetchedProduct.title}</p>
+            <p>Price: ${fetchedProduct.price}</p>
+            <p>Author: {fetchedProduct.author}</p>
+            <p>Category: {fetchedProduct.category.categoryName}</p>
+            </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
                 <img style={{ maxWidth: '300px', maxHeight: '400px', marginRight: '20px' }} src={fetchedProduct.image} alt={fetchedProduct.title}></img>
 
-                <p style={{ border: '2px solid', width: '800px', padding: '20px' }}>{fetchedProduct.description}</p>
+                <textarea readOnly style={{ border: '2px solid', width: '800px',height:'450px', padding: '20px' }}>{fetchedProduct.description}</textarea>
             </div>
 
         </div>

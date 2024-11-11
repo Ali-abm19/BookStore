@@ -1,14 +1,12 @@
 import React from 'react'
 
-export default function Product({ book }) {
+export default function Product({ book, quantity }) {
 
   return (
     <div>
-      <p>{book.title}</p>
-      <p>{book.price}$</p>
-      <p>{book.author}</p>
-      <p>{book.category.categoryName}</p>
       <img src={book.image} alt={book.title}></img>
+      <p>{book.title}</p>
+      <p>${book.price * quantity || book.price}</p>
     </div>
   )
 }

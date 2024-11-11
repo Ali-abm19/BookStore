@@ -61,18 +61,23 @@ export default function CartList({ user, cartBooks, setCartBooks, setLoggedIn })
 
     else
         return (
-            <div>
-                {cartBooks.map((element) =>
-                    <div key={element.book.bookId}>
-                        <Product book={element.book}></Product>
-                        <p>{element.quantity}</p>
-                        <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
-                        <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
-                        <br></br>
-                        <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
-                    </div>
-                )}
-                <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => checkOut()}>Checkout</Button>
+            <div style={{display:'flex', justifyContent:'center'}}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr'}}>
+                    {cartBooks.map((element) =>
+                        <div key={element.book.bookId}>
+                            <div>
+                                <Product book={element.book} quantity={element.quantity}></Product>
+                                <p>{element.quantity}</p>
+                                <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
+                                <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
+                                <br></br>
+                                <Button style={{ color: "4A7D9A" , maxHeight:'120px'}} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+                <br></br>
+                <Button style={{ color: "4A7D9A" }} variant="contained" onClick={() => checkOut()}>Checkout</Button>
 
             </div>
         )

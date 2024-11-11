@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '@mui/material';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
-import Product from '../products/Product';
 import { useNavigate } from 'react-router-dom';
 import CheckoutItem from './CheckoutItem';
 
@@ -61,7 +60,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
         })
           .then((response) => {
             console.log(response)
-            // setCartFromDB(response.data.cart)
+            getCart(cartFromDB.cartId);
           }
           )
           .catch((error) => {
@@ -167,11 +166,6 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
     createCart();
   }, [loadingCart]);
 
-  // useEffect(() => {
-  //   submitAllItemsToBackend(cartBooks);
-  // }, []);
-
-
   if (loadingCart === true) {
     return (
       <div>
@@ -198,7 +192,12 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
         )}
         <div style={{ marginBottom: '1px' }}>
           <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Place Order</Button>
-          <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => navigate('/books')}>Back to Collection</Button>
+          <Button style={{ color: "4A7D9A", backgroundColor:"red" }} variant="contained" onClick={() => {
+            setCartFromDB(null);
+            setLoggedIn(false);
+            navigate('/books');
+          }
+          }>Cancel</Button>
         </div>
 
       </div>

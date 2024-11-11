@@ -10,9 +10,9 @@ export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUser
     const token = localStorage.getItem("token");
 
     function deleteSelectedItems() {
-        // selected.forEach(element => {
-        //     deleteHandler(element);
-        // });
+        selected.forEach(element => {
+            deleteHandler(element);
+        });
     }
 
     console.log(fetchedUsers);

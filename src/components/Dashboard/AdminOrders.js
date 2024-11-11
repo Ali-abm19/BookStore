@@ -12,14 +12,16 @@ export default function AdminOrders() {
     const url = `http://localhost:5125/api/v1/Orders`;
     const token = localStorage.getItem("token");
 
-    // function deleteHandler(user) {
-    //     axios.delete("http://localhost:5125/api/v1/Users/" + user,
-    //         { headers: { Authorization: `Bearer ${token}` }, })
-    //         .then((response) => enqueueSnackbar(`User was Deleted`, { variant: 'info' })
-    //         )
-    //         .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
-    //     fetchListFromAPI();
-    // }
+    function deleteHandler(orderId) {
+        axios.delete("http://localhost:5125/api/v1/Orders/" + orderId,
+            { headers: { Authorization: `Bearer ${token}` }, })
+            .then((response) => {
+                enqueueSnackbar(`Order was Deleted`, { variant: 'info' })
+                fetchListFromAPI();
+        }
+            )
+            .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
+    }
 
 
     function fetchUsersListFromAPI() {
@@ -71,7 +73,8 @@ export default function AdminOrders() {
             <OrdersInDataGrid
                 orders={fetchedOrders}
                 fetchedUsers={fetchedUsers}
-                setFetchedUsers={setFetchedUsers} />
+                setFetchedUsers={setFetchedUsers}
+                deleteHandler={deleteHandler} />
         </div>
     )
 
