@@ -35,7 +35,10 @@ export default function AdminCategories() {
         axios.post("http://localhost:5125/api/v1/Categories", category,
             { headers: { Authorization: `Bearer ${token}` } }
         )
-            .then((response) => { enqueueSnackbar(`Category was Created`, { variant: 'success' }) })
+            .then((response) => {
+                enqueueSnackbar(`Category was Created`, { variant: 'success' })
+                fetchListFromAPI()
+            })
             .catch((error) => { enqueueSnackbar(`Category creation failed`, { variant: 'error' }) })
 
     }
@@ -60,6 +63,7 @@ export default function AdminCategories() {
                     Create Category
                 </AccordionSummary>
                 <AccordionDetails>
+
                     <CreateCategory
                         category={category}
                         setCategory={setCategory} >
@@ -69,7 +73,7 @@ export default function AdminCategories() {
 
                 </AccordionDetails>
             </Accordion>
-
+            <br></br>
             <CategoriesInDataGrid categories={fetchedCats} />
         </div>
     )

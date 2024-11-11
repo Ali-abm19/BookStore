@@ -18,12 +18,19 @@ export default function CreateCategory({ category, setCategory }) {
                 type='text'
                 onChange={changeHandler}
             />
+
+            <br></br>
+
             <TextField
                 name="description"
                 label="Category Description"
                 variant="outlined"
                 helperText="Enter the description"
                 type='text'
+                multiline
+                rows={4}
+                maxRows={4}
+                fullWidth
                 onChange={changeHandler}
             />
         </div>

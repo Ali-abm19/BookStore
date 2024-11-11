@@ -19,7 +19,7 @@ export default function Products({ setCartBooks, cartBooks }) {
   const [dbBooksCount, setDbBooksCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(4);
   // const [offset, setOffset] = useState(0);
   const [title, setTitle] = useState(" ");
   const [author, setAuthor] = useState(" ");

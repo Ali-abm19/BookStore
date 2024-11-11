@@ -47,7 +47,7 @@ export default function AdminUsers() {
 
     return (
         <div>
-            <h1>Admin Users view</h1>
+            <h1>Admin Users View</h1>
             <UsersInDataGrid users={fetchedUsers} deleteHandler={deleteHandler} />
         </div>
     )

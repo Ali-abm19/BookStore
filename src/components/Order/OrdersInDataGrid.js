@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
+import axios from 'axios';
 
-export default function OrdersInDataGrid({ orders, deleteHandler }) {
+export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUsers, fetchedUsers }) {
     const [selected, setSelected] = useState();
+
+    const token = localStorage.getItem("token");
 
     function deleteSelectedItems() {
         // selected.forEach(element => {
@@ -12,10 +15,16 @@ export default function OrdersInDataGrid({ orders, deleteHandler }) {
         // });
     }
 
-    console.log(orders);
+    console.log(fetchedUsers);
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 150 },
+        { field: 'id', headerName: 'Order ID', width: 150 },
+        {
+            field: 'user',
+            headerName: 'User',
+            width: 170,
+            editable: false,
+        },
         {
             field: 'totalPrice',
             headerName: 'Total Price',
@@ -39,6 +48,7 @@ export default function OrdersInDataGrid({ orders, deleteHandler }) {
     const rows = orders.map((order) => {
         return {
             id: order.orderId,
+            user: fetchedUsers.find(u => order.userId === u.userId).name || "",
             totalPrice: order.totalPrice,
             dateCreated: order.dateCreated,
             orderStatus: order.orderStatus,

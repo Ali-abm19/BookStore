@@ -41,8 +41,25 @@ export default function SingleProductPage({ product }) {
     }
 
     return (
-        <div>
-            <Product book={fetchedProduct} />
+
+
+        <div
+            style={{
+                display: 'flex', flexDirection: 'column',
+                alignItems: 'center', justifyContent: 'center'
+            }}>
+            <p>{fetchedProduct.title}</p>
+            <p>{fetchedProduct.price}$</p>
+            <p>{fetchedProduct.author}</p>
+            <p>{fetchedProduct.category.categoryName}</p>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+                <img style={{ maxWidth: '300px', maxHeight: '400px', marginRight: '20px' }} src={fetchedProduct.image} alt={fetchedProduct.title}></img>
+
+                <p style={{ border: '2px solid', width: '800px', padding: '20px' }}>{fetchedProduct.description}</p>
+            </div>
+
         </div>
     )
 }

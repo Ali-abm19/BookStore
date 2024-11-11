@@ -19,10 +19,10 @@ export default function AdminProducts() {
   function deleteHandler(book) {
     axios.delete("http://localhost:5125/api/v1/Books/" + book,
       { headers: { Authorization: `Bearer ${token}` }, })
-      .then((response) => enqueueSnackbar(`Book was Deleted`, { variant: 'info' })
+      .then((response) => {enqueueSnackbar(`Book was Deleted`, { variant: 'info' })
+        fetchListFromAPI();}
       )
       .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
-    fetchListFromAPI();
   }
 
   function updateHandler(book) {
@@ -48,7 +48,10 @@ export default function AdminProducts() {
   function createBookHandler(book) {
     axios.post("http://localhost:5125/api/v1/Books/", book,
       { headers: { Authorization: `Bearer ${token}` }, })
-      .then((response) => enqueueSnackbar(`Book ${book.title} was Created`, { variant: 'success' })
+      .then((response) => {
+        enqueueSnackbar(`Book ${book.title} was Created`, { variant: 'success' })
+        fetchListFromAPI();
+      }
       )
       .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
     fetchListFromAPI();
@@ -81,7 +84,7 @@ export default function AdminProducts() {
 
   return (
     <div>
-      <h1>Admin Books view</h1>
+      <h1>Admin Books View</h1>
 
       <Accordion>
         <AccordionSummary
@@ -101,6 +104,7 @@ export default function AdminProducts() {
           <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => { createBookHandler(newBook) }} >Create Book</Button>
         </AccordionDetails>
       </Accordion>
+      <br></br>
       <ProductsInDataGrid
         books={fetchedBooks}
         deleteHandler={deleteHandler}

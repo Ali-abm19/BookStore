@@ -30,87 +30,110 @@ export default function CreateBook({ newBook, setNewBook }) {
 
     // console.log(categories[0].categoryName);
 
-    if(!loadingCategories)
-    return (
-        <div>
-            <TextField
-                name="title"
-                label="Book Title"
-                variant="outlined"
-                helperText="Enter the book title"
-                type='text'
-                onChange={changeHandler}
-            />
-            <TextField
-                name="author"
-                label="Book Author"
-                variant="outlined"
-                helperText="Enter the name of the author"
-                type='text'
-                onChange={changeHandler}
-            />
-            <TextField
-                name="isbn"
-                label="Book ISBN"
-                variant="outlined"
-                helperText="Enter the book of the ISBN"
-                type='text'
-                onChange={changeHandler}
-            />
-            <TextField
-                name="price"
-                label="Book Price"
-                variant="outlined"
-                helperText="Enter the book price in usd"
-                type='number'
-                onChange={changeHandler}
-            />
-            <TextField
-                name="StockQuantity"
-                label="Book Quantity"
-                variant="outlined"
-                helperText="Enter the book's stock quantity"
-                type='number'
-                onChange={changeHandler}
-            />
-            <TextField
-                name="image"
-                label="Book Cover Image"
-                variant="outlined"
-                helperText="Enter the book's cover link"
-                type='url'
-                onChange={changeHandler}
-            />
-            <Select
-                name="bookFormat"
-                label="Book Format"
-                onChange={changeHandler}
-                defaultValue={"Paperback"}
-            >
-                <MenuItem value={"Audio"}>Audio</MenuItem>
-                <MenuItem value={"Paperback"}>Paperback</MenuItem>
-                <MenuItem value={"Hardcover"}>Hardcover</MenuItem>
-                <MenuItem value={"Ebook"}>Ebook</MenuItem>
-            </Select>
+    if (!loadingCategories)
+        return (
+            <div>
+                <TextField
+                    name="title"
+                    label="Title"
+                    variant="outlined"
+                    helperText="Book title"
+                    type='text'
+                    onChange={changeHandler}
+                />
+                <TextField
+                    name="author"
+                    label="Author"
+                    variant="outlined"
+                    helperText="Name of the author"
+                    type='text'
+                    onChange={changeHandler}
+                />
+                <TextField
+                    name="isbn"
+                    label="ISBN"
+                    variant="outlined"
+                    helperText="ISBN of the book"
+                    type='text'
+                    onChange={changeHandler}
+                />
 
-            <Select
-                name="categoryName"
-                label="Book Category"
-                onChange={changeHandler}
-                defaultValue={categories[0].categoryName || ""}
+                <br></br>
 
-            >
-                {categories.map((category) =>
-                    <MenuItem value={category.categoryName} key={category.categoryId}>
-                        {category.categoryName ? category.categoryName: ""}
-                    </MenuItem>
-                )}
-            </Select>
+                <TextField
+                    name="price"
+                    label="Price"
+                    variant="outlined"
+                    type='number'
+                    style={{ width: '120px' }}
+                    onChange={changeHandler}
+                />
+                <TextField
+                    name="StockQuantity"
+                    label="Quantity"
+                    variant="outlined"
+                    type='number'
+                    style={{width:'120px'}}
+                    onChange={changeHandler}
+                />
 
+                <Select
+                    name="bookFormat"
+                    label="Book Format"
+                    onChange={changeHandler}
+                    defaultValue={"Paperback"}
+                >
+                    <MenuItem value={"Audio"}>Audio</MenuItem>
+                    <MenuItem value={"Paperback"}>Paperback</MenuItem>
+                    <MenuItem value={"Hardcover"}>Hardcover</MenuItem>
+                    <MenuItem value={"Ebook"}>Ebook</MenuItem>
+                </Select>
 
-        </div>
-    )
-    else{
+                <Select
+                    name="categoryName"
+                    label="Book Category"
+                    onChange={changeHandler}
+                    defaultValue={categories[0].categoryName || ""}
+
+                >
+                    {categories.map((category) =>
+                        <MenuItem value={category.categoryName} key={category.categoryId}>
+                            {category.categoryName}
+                        </MenuItem>
+                    )}
+                </Select>
+
+                <br></br>
+                <br></br>
+
+                <TextField
+                    name="image"
+                    label="Book Cover Image"
+                    variant="outlined"
+                    helperText="A link to the cover image"
+                    type='url'
+                    fullWidth
+                    onChange={changeHandler}
+                />
+
+                <br></br>
+                <TextField
+                    name="description"
+                    label="Book Description"
+                    variant="outlined"
+                    helperText="Description of the book"
+                    type='text'
+
+                    multiline
+                    rows={6}
+                    fullWidth
+                    maxRows={6}
+                    onChange={changeHandler}
+                />
+
+            </div>
+        )
+    else {
         <div>
             loading...
         </div>
