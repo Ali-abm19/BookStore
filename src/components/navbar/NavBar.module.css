@@ -5,12 +5,16 @@ header {
 
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     border-bottom: 3px solid;
 }
 
 .logo {
-    max-height: 100px;
-    max-width: 70px;
+    max-height: 80px;
+    max-width: 50px;
+
+    width: auto;
+    height: auto;
 
 }
 

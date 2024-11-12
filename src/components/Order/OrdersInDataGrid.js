@@ -15,8 +15,6 @@ export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUser
         });
     }
 
-    console.log(fetchedUsers);
-
     const columns = [
         { field: 'id', headerName: 'Order ID', width: 150 },
         {
@@ -48,7 +46,7 @@ export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUser
     const rows = orders.map((order) => {
         return {
             id: order.orderId,
-            user: fetchedUsers.find(u => order.userId === u.userId).name || "",
+            user: fetchedUsers.find(u => order.userId === u.userId).name,
             totalPrice: order.totalPrice,
             dateCreated: order.dateCreated,
             orderStatus: order.orderStatus,
@@ -58,7 +56,7 @@ export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUser
 
 
     return (
-        <Box sx={{ height: 400, width: '100%' }}>
+        <Box sx={{ height: 400, width: '100%' }} style={{ marginBottom: '25px' }}>
             <DataGrid
                 rows={rows}
                 columns={columns}
@@ -75,6 +73,7 @@ export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUser
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
 
             />
+            <br></br>
             <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
         </Box>
 

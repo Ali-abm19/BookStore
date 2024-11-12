@@ -3,7 +3,7 @@ import CartListBackend from '../components/Cart/CartListBackend'
 
 export default function CheckoutPage({ user, cartBooks, setCartBooks }) {
     return (
-        <div>
+        <div style={{ marginBottom: '25px' }}>
             <CartListBackend
                 user={user}
                 cartBooks={cartBooks}

@@ -38,7 +38,7 @@ export default function DashboardPage({ user }) {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }} style={{ marginBottom: '25px' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Books" {...a11yProps(0)} />

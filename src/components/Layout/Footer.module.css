@@ -1,0 +1,30 @@
+
+footer {
+    border-top: solid 3px;
+    /* max-height: 400px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer div ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+footer div li {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+footer p {
+    text-align: center;
+}
+
+ul a img {
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+}

@@ -32,7 +32,7 @@ export default function CategoriesInDataGrid({ categories }) {
     })
 
     return (
-        <Box sx={{ height: 400, width: '100%' }}>
+        <Box sx={{ height: 400, width: '100%' }} style={{ marginBottom: '25px' }}>
             <DataGrid
                 rows={rows}
                 columns={columns}
@@ -48,7 +48,6 @@ export default function CategoriesInDataGrid({ categories }) {
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
 
             />
-            {/* <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button> */}
         </Box>
 
 

@@ -19,34 +19,20 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
       axios.post("http://localhost:5125/api/v1/Carts", { "userId": user.userId })
         //note that this method will NOT create a cart if the user already have one
         //instead it will return the previous cart
+        //new: unless the previous cart was made into an Order
         .then((response) => {
           setCartFromDB(response.data)
           setLoadingCart(false)
-          // if (cartBooks.length > 0)
           submitAllItemsToBackend(cartBooks);
-          // setCartBooks();
-
-        }
-        )
+        })
         .catch((error) => {
-          console.log(error)
+          enqueueSnackbar(error.message, { variant: 'error' });
           setLoadingCart(false)
         })
     }
     else {
       setLoadingCart(false);
     }
-  }
-
-  function deleteCart(cartId) { //this is for deleting the whole cart. currently not used
-    axios.delete("http://localhost:5125/api/v1/Carts", { "cartId": cartId })
-
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
   }
 
   function submitAllItemsToBackend(cartBooks) {
@@ -59,12 +45,13 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
         })
           .then((response) => {
-            console.log(response)
+            console.log(response.data)
+            enqueueSnackbar("a book was added to the cart", { variant: 'success' });
             getCart(cartFromDB.cartId);
           }
           )
           .catch((error) => {
-            console.log(error)
+            enqueueSnackbar(error.message, { variant: 'error' });
           })
       })
     }
@@ -96,16 +83,16 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
     }
   }
 
-  function deleteCartItem(id) {
-    axios.delete("http://localhost:5125/api/v1/CartItems/" + id,
-      { headers: { Authorization: `Bearer ${token}` }, }
-    )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  async function deleteCartItem(id) {
+    try {
+      const response = axios.delete("http://localhost:5125/api/v1/CartItems/" + id,
+        { headers: { Authorization: `Bearer ${token}` }, }
+      )
+      console.log(response);
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   function increaseAmount(id) {
@@ -142,8 +129,6 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
   }
 
-  console.log(cartFromDB);
-
   async function deleteBook(id) {
     deleteCartItem(cartFromDB.cartItems.find((items) => items.book.bookId === id).cartItemsId);
     await getCart(cartFromDB.cartId);
@@ -152,12 +137,11 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
   async function placeOrder() {
     try {
       const response = await axios.post("http://localhost:5125/api/v1/Orders", { "cartId": cartFromDB.cartId }, { headers: { Authorization: `Bearer ${token}` }, })
-      const data = response;
       enqueueSnackbar('Order Created', { variant: 'success' });
-      setCartFromDB(null)
+      setCartFromDB(null);
+      setCartBooks([])
       navigate('/Home');
     } catch (error) {
-      console.log(error);
       enqueueSnackbar(error.response.data.message || error.message, { variant: 'error' })
     }
   }
@@ -180,12 +164,13 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
   if (cartFromDB) {
     return (
       <div style={{
-        display: 'flex', justifyContent: 'space-between',
+        display: 'flex', justifyContent: 'space-evenly',
         alignItems: 'center'
       }}>
 
-        {cartFromDB.cartItems.map((element) =>
-          <div>
+        <div style={{display:'grid', gridTemplateColumns:'1fr 1fr 1fr'}}>
+          {cartFromDB.cartItems.map((element) =>
+
             <div key={element.book.bookId}>
               <CheckoutItem element={element} />
               <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
@@ -197,9 +182,8 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
               <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
 
             </div>
-          </div>
-        )}
-
+          )}
+        </div >
         <div style={{ marginBottom: '1px' }}>
 
           <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Place Order</Button>

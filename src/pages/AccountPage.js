@@ -8,7 +8,7 @@ export default function Account({ isRegistered, token, setToken, user, setUser }
 
     if (isRegistered)
         return (
-            <div>
+            <div style={{ marginBottom: '25px' }}>
                 <SignIn
                     token={token}
                     setToken={setToken}
@@ -19,7 +19,7 @@ export default function Account({ isRegistered, token, setToken, user, setUser }
 
     else {
         return (
-            <div>
+            <div style={{ marginBottom: '25px' }}>
                 <Register
                     token={token}
                     setToken={setToken}

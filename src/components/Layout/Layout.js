@@ -2,6 +2,7 @@ import React from 'react'
 
 import NavBar from '../navbar/NavBar'
 import { Outlet } from 'react-router-dom'
+import Footer from './Footer'
 
 export default function Layout({ user, setUser }) {
     return (
@@ -12,6 +13,7 @@ export default function Layout({ user, setUser }) {
             />
             <Outlet />
 
+            <Footer />
         </div>
     )
 }

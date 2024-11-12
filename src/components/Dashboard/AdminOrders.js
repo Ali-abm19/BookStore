@@ -33,13 +33,9 @@ export default function AdminOrders() {
 
             })
             .catch((error) => {
-                console.log("Failed to fetch the users");
+                enqueueSnackbar("failed to fetch names", {variant:'error'})
             })
     }
-
-    useEffect(() => {
-        fetchUsersListFromAPI();
-    }, []);
 
     function fetchListFromAPI() {
         axios.get(url,
@@ -56,8 +52,9 @@ export default function AdminOrders() {
     }
 
     useEffect(() => {
+        fetchUsersListFromAPI();
         fetchListFromAPI();
-    }, []);
+    }, [loading]);
 
     if (loading) {
         return <p>Loading...</p>;

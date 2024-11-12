@@ -95,9 +95,8 @@ export default function ProductsInDataGrid({ books, deleteHandler, updateHandler
                 }
 
             />
+            <br></br>
             <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => deleteSelectedItems()}>Delete Selected</Button>
-            {/* <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => updateSelectedItems()}>Update Selected</Button> */}
-
         </Box>
 
 
