@@ -8,26 +8,24 @@ import CartListBackend from '../components/Cart/CartListBackend';
 
 export default function CartPage({ user, cartBooks, setCartBooks }) {
     //const navigate = useNavigate();
-    const [loggedIn, setLoggedIn] = useState(false);
+    // const [loggedIn, setLoggedIn] = useState(false);
 
-    if (loggedIn) {
-        return (
-            <CartListBackend
-                user={user}
-                cartBooks={cartBooks}
-                setCartBooks={setCartBooks}
-                setLoggedIn={setLoggedIn}
-            />
-        )
-    }
+    // if (loggedIn) {
+    //     return (
+    //         <CartListBackend
+    //             user={user}
+    //             cartBooks={cartBooks}
+    //             setCartBooks={setCartBooks}
+    //             setLoggedIn={setLoggedIn}
+    //         />
+    //     )
+    // }
 
-    else
         return (
             <CartList
                 user={user}
                 setCartBooks={setCartBooks}
                 cartBooks={cartBooks}
-                setLoggedIn={setLoggedIn}
             />
         )
 }

@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/User/ProtectedRoute";
 import ProfilePage from "./pages/ProfilePage";
 import DashboardPage from "./pages/DashboardPage";
 import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/CheckoutPage";
 
 
 
@@ -81,20 +82,22 @@ function App() {
               setUser={setUser} />}
           />
         },
-        // {
-        //   path: '/dashboard',
-        //   element: <DashboardPage />,
-        //   children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
-        // },
         {
           path: '/dashboard', element: <ProtectedRoute checkAdmin={true} user={user}
             element={<DashboardPage user={user} />}
           />,
-          // children: [{ path: '/dashboard/books', element: <AdminProducts user={user} /> },]
         },
         {
           path: '/cart',
           element: <CartPage
+            user={user}
+            cartBooks={cartBooks}
+            setCartBooks={setCartBooks}
+          />
+        },
+        {
+          path: 'cart/checkout',
+          element: <CheckoutPage
             user={user}
             cartBooks={cartBooks}
             setCartBooks={setCartBooks}

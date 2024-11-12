@@ -5,7 +5,7 @@ import { enqueueSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 import CheckoutItem from './CheckoutItem';
 
-export default function CartListBackend({ user, cartBooks, setCartBooks, setLoggedIn }) {
+export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
   const [cartFromDB, setCartFromDB] = useState();
   const [loadingCart, setLoadingCart] = useState(true);
@@ -113,7 +113,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
       if (id === elem.book.bookId) {
         if (elem.book.stockQuantity >= elem.quantity + 1) {
           elem.quantity++;
-          updateCartItem(elem.cartItemsId, elem.quantity)
+          await updateCartItem(elem.cartItemsId, elem.quantity)
           await getCart(cartFromDB.cartId);
         }
         else {
@@ -153,9 +153,12 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
     try {
       const response = await axios.post("http://localhost:5125/api/v1/Orders", { "cartId": cartFromDB.cartId }, { headers: { Authorization: `Bearer ${token}` }, })
       const data = response;
-      console.log(data);
+      enqueueSnackbar('Order Created', { variant: 'success' });
+      setCartFromDB(null)
+      navigate('/Home');
     } catch (error) {
       console.log(error);
+      enqueueSnackbar(error.response.data.message || error.message, { variant: 'error' })
     }
   }
 
@@ -176,30 +179,37 @@ export default function CartListBackend({ user, cartBooks, setCartBooks, setLogg
 
   if (cartFromDB) {
     return (
-      <div>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+
         {cartFromDB.cartItems.map((element) =>
-          <div key={element.book.bookId}>
-            <CheckoutItem element={element} />
-            {/* <Product book={element.book}></Product>
-            <p>{element.quantity}</p> */}
+          <div>
+            <div key={element.book.bookId}>
+              <CheckoutItem element={element} />
+              <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
+              <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
 
 
-            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
-            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
-            <br></br>
-            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
+
+              <br></br>
+              <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
+
+            </div>
           </div>
         )}
+
         <div style={{ marginBottom: '1px' }}>
+
           <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (placeOrder(cartFromDB))}>Place Order</Button>
-          <Button style={{ color: "4A7D9A", backgroundColor:"red" }} variant="contained" onClick={() => {
+          <br></br>
+          <Button style={{ color: "4A7D9A", backgroundColor: "red" }} variant="contained" onClick={() => {
             setCartFromDB(null);
-            setLoggedIn(false);
             navigate('/books');
           }
           }>Cancel</Button>
         </div>
-
       </div>
     )
   }

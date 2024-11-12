@@ -5,7 +5,7 @@ import { enqueueSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function CartList({ user, cartBooks, setCartBooks, setLoggedIn }) {
+export default function CartList({ user, cartBooks, setCartBooks }) {
     const navigate = useNavigate();
 
     function increaseAmount(id) {
@@ -43,7 +43,7 @@ export default function CartList({ user, cartBooks, setCartBooks, setLoggedIn })
             enqueueSnackbar("please sign-in first", { variant: 'error' });
         }
         else {
-            setLoggedIn(true);
+            navigate('/cart/checkout');
         }
     }
 
