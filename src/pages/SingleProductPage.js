@@ -12,7 +12,7 @@ export default function SingleProductPage({ product }) {
     const [fetchedProduct, setFetchedProduct] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    let url = "http://localhost:5125/api/v1/Books/" + productId;
+    let url = "https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books/" + productId;
 
     function fetchListFromAPI() {
         axios.get(url)
@@ -49,18 +49,18 @@ export default function SingleProductPage({ product }) {
                 alignItems: 'center', justifyContent: 'center'
             }}>
 
-            <div style={{width:'75%',display:'flex', justifyContent:'space-between'}}>
-            <p>Book: {fetchedProduct.title}</p>
-            <p>Price: ${fetchedProduct.price}</p>
-            <p>Author: {fetchedProduct.author}</p>
-            <p>Category: {fetchedProduct.category.categoryName}</p>
+            <div style={{ width: '75%', display: 'flex', justifyContent: 'space-between' }}>
+                <p>Book: {fetchedProduct.title}</p>
+                <p>Price: ${fetchedProduct.price}</p>
+                <p>Author: {fetchedProduct.author}</p>
+                <p>Category: {fetchedProduct.category.categoryName}</p>
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
                 <img style={{ maxWidth: '300px', maxHeight: '400px', marginRight: '20px' }} src={fetchedProduct.image} alt={fetchedProduct.title}></img>
 
-                <textarea readOnly style={{ border: '2px solid', width: '800px',height:'450px', padding: '20px' }}>{fetchedProduct.description}</textarea>
+                <textarea readOnly style={{ border: '2px solid', width: '800px', height: '450px', padding: '20px' }}>{fetchedProduct.description}</textarea>
             </div>
 
         </div>

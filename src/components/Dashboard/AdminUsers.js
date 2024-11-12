@@ -7,11 +7,11 @@ export default function AdminUsers() {
     const [fetchedUsers, setFetchedUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = `http://localhost:5125/api/v1/Users`;
+    const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users`;
     const token = localStorage.getItem("token");
 
     function deleteHandler(user) {
-        axios.delete("http://localhost:5125/api/v1/Users/" + user,
+        axios.delete("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users/" + user,
             { headers: { Authorization: `Bearer ${token}` }, })
             .then((response) => enqueueSnackbar(`User was Deleted`, { variant: 'info' })
             )
@@ -20,8 +20,8 @@ export default function AdminUsers() {
     }
 
     function fetchListFromAPI() {
-        axios.get(url, 
-            { headers: { Authorization: `Bearer ${token}` }}
+        axios.get(url,
+            { headers: { Authorization: `Bearer ${token}` } }
         )
             .then((response) => {
                 setFetchedUsers(response.data);

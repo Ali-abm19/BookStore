@@ -27,7 +27,7 @@ export default function Products({ setCartBooks, cartBooks }) {
   const [min, setMin] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-  const url = `http://localhost:5125/api/v1/Books?limit=${limit}&offset=${(page - 1) * limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}&SearchByAuthor=${author}`;
+  const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books?limit=${limit}&offset=${(page - 1) * limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}&SearchByAuthor=${author}`;
 
   const handleChange = (event, value) => {
     // const nextValue = value;

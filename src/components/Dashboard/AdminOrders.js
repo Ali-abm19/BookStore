@@ -9,23 +9,23 @@ export default function AdminOrders() {
     const [fetchedUsers, setFetchedUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = `http://localhost:5125/api/v1/Orders`;
+    const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Orders`;
     const token = localStorage.getItem("token");
 
     function deleteHandler(orderId) {
-        axios.delete("http://localhost:5125/api/v1/Orders/" + orderId,
+        axios.delete("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Orders/" + orderId,
             { headers: { Authorization: `Bearer ${token}` }, })
             .then((response) => {
                 enqueueSnackbar(`Order was Deleted`, { variant: 'info' })
                 fetchListFromAPI();
-        }
+            }
             )
             .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
     }
 
 
     function fetchUsersListFromAPI() {
-        axios.get("http://localhost:5125/api/v1/Users",
+        axios.get("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users",
             { headers: { Authorization: `Bearer ${token}` } }
         )
             .then((response) => {
@@ -33,7 +33,7 @@ export default function AdminOrders() {
 
             })
             .catch((error) => {
-                enqueueSnackbar("failed to fetch names", {variant:'error'})
+                enqueueSnackbar("failed to fetch names", { variant: 'error' })
             })
     }
 

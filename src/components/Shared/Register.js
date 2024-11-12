@@ -13,7 +13,7 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
     const [isLoadingSignUp, setIsLoadingSignUp] = useState(true);
     const navigate = useNavigate();
 
-    let urlSignup = "http://localhost:5125/api/v1/Users/signUp"
+    let urlSignup = "https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users/signUp"
 
     function registerNewUser() {
         setIsLoadingSignUp(true);
