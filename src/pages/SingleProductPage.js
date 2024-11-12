@@ -53,6 +53,7 @@ export default function SingleProductPage({ product }) {
                 <p>Book: {fetchedProduct.title}</p>
                 <p>Price: ${fetchedProduct.price}</p>
                 <p>Author: {fetchedProduct.author}</p>
+                <p>Form: {fetchedProduct.bookFormat}</p>
                 <p>Category: {fetchedProduct.category.categoryName}</p>
             </div>
 

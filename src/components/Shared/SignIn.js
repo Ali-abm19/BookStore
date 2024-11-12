@@ -23,17 +23,17 @@ export default function SignIn({ token, setToken, user, setUser }) {
             }
         )
             .then((response) => {
-                console.log(response);
+                //console.log(response);
                 enqueueSnackbar("Welcome " + response.data.dto.name, { variant: 'success', autoHideDuration: 3000 });
                 setToken(response.data.token);
                 localStorage.setItem("token", response.data.token);
                 setUser(response.data.dto);
-                // console.log(user);
+                // //console.log(user);
                 navigate('/home');
             })
             .catch((e) => {
                 setError(e);
-                console.log(e);
+                //console.log(e);
                 if (error.status === 404) {
                     enqueueSnackbar(error.response.data.message, { variant: 'error', autoHideDuration: 5000 });
                 }

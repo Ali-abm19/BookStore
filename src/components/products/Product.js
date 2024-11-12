@@ -6,7 +6,7 @@ export default function Product({ book, quantity }) {
     <div>
       <img src={book.image} alt={book.title}></img>
       <p>{book.title}</p>
-      <p>${book.price * quantity || book.price}</p>
+      <p>${(Math.round(book.price * quantity * 100) / 100) || book.price}</p>
     </div>
   )
 }

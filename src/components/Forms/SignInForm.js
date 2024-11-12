@@ -4,11 +4,11 @@ import React from 'react'
 export default function SignInForm({ setEmail, setPassword }) {
     function onChangeHandlerEmail(event) {
         setEmail(event.target.value);
-        console.log("email:" + event.target.value);
+        //console.log("email:" + event.target.value);
     }
     function onChangeHandlerPassword(event) {
         setPassword(event.target.value);
-        console.log("password:" + event.target.value);
+        //console.log("password:" + event.target.value);
     }
     return (
         <div>

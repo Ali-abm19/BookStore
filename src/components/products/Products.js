@@ -60,7 +60,7 @@ export default function Products({ setCartBooks, cartBooks }) {
     return <p>{error}</p>;
   }
 
-  // console.log(cartBooks);
+  // //console.log(cartBooks);
   function addToCart(book) {
     if (!(cartBooks.some((b) => b.book.bookId === book.bookId))) {
       setCartBooks([...cartBooks, { quantity: 1, book: book }]);

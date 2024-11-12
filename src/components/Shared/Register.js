@@ -25,14 +25,14 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
         )
             .then((response) => {
                 setIsLoadingSignUp(false);
-                //console.log(response);
+                ////console.log(response);
                 enqueueSnackbar("Account Created", { variant: 'success', autoHideDuration: 3000 });
                 navigate('/home');
             })
             .catch((e) => {
                 setIsLoadingSignUp(false)
                 setError(e);
-                console.log(e);
+                //console.log(e);
                 if (error.status === 400) {
                     enqueueSnackbar(e.response.data.errors.Email[0], { variant: 'error', autoHideDuration: 5000 });
                     enqueueSnackbar(e.response.data.errors.Password[0], { variant: 'error', autoHideDuration: 5000 });

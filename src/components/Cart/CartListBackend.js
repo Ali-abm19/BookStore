@@ -45,7 +45,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
         })
           .then((response) => {
-            console.log(response.data)
+            //console.log(response.data)
             enqueueSnackbar("a book was added to the cart", { variant: 'success' });
             getCart(cartFromDB.cartId);
           }
@@ -65,11 +65,11 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
         { headers: { Authorization: `Bearer ${token}` }, }
       )
       setCartFromDB(response.data)
-      console.log(response);
+      //console.log(response);
 
     }
     catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 
@@ -77,9 +77,9 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
     try {
       const response = await axios.put("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/CartItems/" + id, { "quantity": newQuantity }, { headers: { Authorization: `Bearer ${token}` }, })
       const data = response;
-      console.log(data);
+      //console.log(data);
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 
@@ -88,10 +88,10 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
       const response = axios.delete("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/CartItems/" + id,
         { headers: { Authorization: `Bearer ${token}` }, }
       )
-      console.log(response);
+      //console.log(response);
     }
     catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   }
 
@@ -112,7 +112,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
   }
 
   function decreaseAmount(id) {
-    console.log(cartFromDB.cartItems);
+    //console.log(cartFromDB.cartItems);
     cartFromDB.cartItems.map(async (elem) => {
       if (id === elem.book.bookId) {
         if (elem.quantity - 1 === 0) {

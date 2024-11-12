@@ -8,7 +8,7 @@ export default function CheckoutItem({ element }) {
 
         }}>
             <p>{element.book.title}</p>
-            <p style={{marginTop:'-5px'}}>Price: ${element.price}</p>
+            <p style={{ marginTop: '-5px' }}>Price: ${(Math.round(element.price * 100) / 100)}</p>
             <p style={{ marginTop: '-5px' }}>Quantity: {element.quantity}</p>
         </div>
     )

@@ -18,7 +18,7 @@ export default function CreateBook({ newBook, setNewBook }) {
                 setLoadingCategories(false);
             })
             .catch((error) => {
-                console.log(error);
+                //console.log(error);
                 setLoadingCategories(false);
             })
     }
@@ -28,7 +28,7 @@ export default function CreateBook({ newBook, setNewBook }) {
         // eslint-disable-next-line
     }, [loadingCategories]);
 
-    // console.log(categories[0].categoryName);
+    // //console.log(categories[0].categoryName);
 
     if (!loadingCategories)
         return (

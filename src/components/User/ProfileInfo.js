@@ -19,7 +19,7 @@ export default function ProfileInfo({ user, setUser }) {
 
     function updateUserProfile() {
         const token = localStorage.getItem("token");
-        console.log(userInfoUpdate)
+        //console.log(userInfoUpdate)
         axios
             .put(
                 `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/users/${user.userId}`, userInfoUpdate
@@ -30,7 +30,7 @@ export default function ProfileInfo({ user, setUser }) {
             )
             .then((res) => {
                 // BE: return user with new info
-                console.log(res);
+                //console.log(res);
                 setUser(res.data);
                 enqueueSnackbar("your account was updated", { variant: 'success', autoHideDuration: 5000 });
                 // setAnchorEl(null);

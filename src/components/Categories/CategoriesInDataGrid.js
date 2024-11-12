@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 export default function CategoriesInDataGrid({ categories }) {
     const [selected, setSelected] = useState();
 
-    console.log(categories);
+    //console.log(categories);
 
     const columns = [
         { field: 'id', headerName: 'ID', width: 380 },

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Logout from '../User/Logout'
 
 export default function NavBar({ user, setUser }) {
-  // console.log("from navbar " + user.role);
+  // //console.log("from navbar " + user.role);
   let isAuthenticated = user ? true : false;
 
   return (
