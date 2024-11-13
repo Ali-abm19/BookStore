@@ -10,7 +10,7 @@ root.render(
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
-  <SnackbarProvider maxSnack={3}>
+  <SnackbarProvider maxSnack={4}>
     <App />
   </SnackbarProvider>
 );

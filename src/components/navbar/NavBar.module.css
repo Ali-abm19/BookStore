@@ -1,8 +1,12 @@
-header {
+#headerDiv {
     position: sticky;
     top: 0;
     z-index: 99;
 
+    background-color: #C59C76;
+}
+
+header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;

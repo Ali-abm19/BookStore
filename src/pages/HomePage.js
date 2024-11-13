@@ -10,7 +10,7 @@ export default function HomePage() {
     <div className={style.hero}>
 
       <div>
-        <h1>Welcome to the BookStore!</h1>
+        <h1>Welcome to Bombadil's Archives!</h1>
         <br />
         <h3>Explore our book collection and find new and exciting releases</h3>
       </div>

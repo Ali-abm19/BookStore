@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button } from '@mui/material';
-import axios from 'axios';
 
 export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUsers, fetchedUsers }) {
     const [selected, setSelected] = useState();
-
-    const token = localStorage.getItem("token");
 
     function deleteSelectedItems() {
         selected.forEach(element => {
@@ -46,7 +43,7 @@ export default function OrdersInDataGrid({ orders, deleteHandler, setFetchedUser
     const rows = orders.map((order) => {
         return {
             id: order.orderId,
-            user: fetchedUsers.find(u => order.userId === u.userId).name,
+            user: fetchedUsers.find(u => order.userId === u.userId) ? fetchedUsers.find(u => order.userId === u.userId).name : 'error fetching name',
             totalPrice: order.totalPrice,
             dateCreated: order.dateCreated,
             orderStatus: order.orderStatus,

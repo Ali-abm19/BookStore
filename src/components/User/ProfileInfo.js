@@ -46,12 +46,16 @@ export default function ProfileInfo({ user, setUser }) {
     }
     return (
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-            <p>Email: {user.email}</p>
-            <p>Id: {user.userId}</p>
-            <p>Name: {user.name}</p>
-            <p>Phone: {user.phone}</p>
-            <p>Address: {user.address}</p>
 
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+
+                <p>Email: <br /> {user.email}</p>
+                <p>ID:<br /> {user.userId}</p>
+                <p>Name: <br />{user.name}</p>
+                <p>Phone: <br />{user.phone}</p>
+
+            </div>
+            <p>Address: <br />{user.address}</p>
             <Accordion style={{ maxWidth: "550px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
