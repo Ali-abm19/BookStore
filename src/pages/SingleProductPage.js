@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
 import Product from '../components/products/Product';
+import { enqueueSnackbar } from 'notistack';
+import { Button } from '@mui/material';
 
-export default function SingleProductPage({ product }) {
+export default function SingleProductPage({ product, setCartBooks, cartBooks }) {
     const params = useParams();
     let productId = params.id;
 
@@ -12,7 +14,17 @@ export default function SingleProductPage({ product }) {
     const [fetchedProduct, setFetchedProduct] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    let url = "https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books/" + productId;
+    let url = "http://localhost:5125/api/v1/Books/" + productId;
+
+    function addToCart(book) {
+        if (!(cartBooks.some((b) => b.book.bookId === book.bookId))) {
+            setCartBooks([...cartBooks, { quantity: 1, book: book }]);
+            enqueueSnackbar("Book added to cart", { variant: "success" })
+        }
+        else {
+            enqueueSnackbar("Book is already in the cart", { variant: "error" })
+        }
+    }
 
     function fetchListFromAPI() {
         axios.get(url)
@@ -46,7 +58,8 @@ export default function SingleProductPage({ product }) {
         <div
             style={{
                 display: 'flex', flexDirection: 'column',
-                alignItems: 'center', justifyContent: 'center'
+                alignItems: 'center', justifyContent: 'center',
+                marginBottom: '20px'
             }}>
 
             <div style={{ width: '75%', display: 'flex', justifyContent: 'space-between' }}>
@@ -57,12 +70,19 @@ export default function SingleProductPage({ product }) {
                 <p>Category: {fetchedProduct.category.categoryName}</p>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{
+                display: 'flex', justifyContent: 'space-between',
+                alignItems: 'center', marginBottom: '20px'
+            }}>
 
                 <img style={{ maxWidth: '300px', maxHeight: '400px', marginRight: '20px' }} src={fetchedProduct.image} alt={fetchedProduct.title}></img>
 
                 <textarea readOnly style={{ border: '2px solid', width: '800px', height: '450px', padding: '20px' }}>{fetchedProduct.description}</textarea>
             </div>
+
+
+            <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => addToCart(fetchedProduct)}>Add to Cart</Button>
+
 
         </div>
     )

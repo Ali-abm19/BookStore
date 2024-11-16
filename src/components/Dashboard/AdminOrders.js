@@ -2,6 +2,7 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 import React, { useEffect, useState } from 'react'
 import OrdersInDataGrid from '../Order/OrdersInDataGrid';
+import { Google } from '@mui/icons-material';
 
 export default function AdminOrders() {
 
@@ -9,11 +10,11 @@ export default function AdminOrders() {
     const [fetchedUsers, setFetchedUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Orders`;
-    const token = localStorage.getItem("token");
+    const url = `http://localhost:5125/api/v1/Orders`;
+    const token = JSON.parse(localStorage.getItem('UserInfo')).token
 
     function deleteHandler(orderId) {
-        axios.delete("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Orders/" + orderId,
+        axios.delete("http://localhost:5125/api/v1/Orders/" + orderId,
             { headers: { Authorization: `Bearer ${token}` }, })
             .then((response) => {
                 enqueueSnackbar(`Order was Deleted`, { variant: 'info' })
@@ -25,7 +26,7 @@ export default function AdminOrders() {
 
 
     function fetchUsersListFromAPI() {
-        axios.get("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users",
+        axios.get("http://localhost:5125/api/v1/Users",
             { headers: { Authorization: `Bearer ${token}` } }
         )
             .then((response) => {
@@ -46,7 +47,7 @@ export default function AdminOrders() {
                 setLoading(false);
             })
             .catch((error) => {
-                setError("Failed to fetch the orders");
+                setError(error.response.data);
                 setLoading(false);
             })
     }

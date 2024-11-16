@@ -3,6 +3,7 @@ import Product from '../products/Product';
 import { Button } from '@mui/material';
 import { enqueueSnackbar } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function CartList({ user, cartBooks, setCartBooks }) {
@@ -43,6 +44,7 @@ export default function CartList({ user, cartBooks, setCartBooks }) {
             enqueueSnackbar("please sign-in first", { variant: 'error' });
         }
         else {
+
             navigate('/cart/checkout');
         }
     }
@@ -61,8 +63,8 @@ export default function CartList({ user, cartBooks, setCartBooks }) {
 
     else
         return (
-            <div style={{display:'flex', justifyContent:'center'}}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr'}}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr' }}>
                     {cartBooks.map((element) =>
                         <div key={element.book.bookId}>
                             <div>
@@ -71,7 +73,7 @@ export default function CartList({ user, cartBooks, setCartBooks }) {
                                 <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (increaseAmount(element.book.bookId))}>+</Button>
                                 <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={() => (decreaseAmount(element.book.bookId))}>-</Button>
                                 <br></br>
-                                <Button style={{ color: "4A7D9A" , maxHeight:'120px'}} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
+                                <Button style={{ color: "4A7D9A", maxHeight: '120px' }} variant="outlined" onClick={() => (deleteBook(element.book.bookId))}>Remove</Button>
                             </div>
                         </div>
                     )}

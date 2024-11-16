@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function ProtectedRoute({ user, setUser, token, element, checkAdmin }) {
+    if (!user) {
+        setUser(JSON.parse(localStorage.getItem('UserInfo')).dto);
+    }
     const navigate = useNavigate();
 
     if (user == null) {

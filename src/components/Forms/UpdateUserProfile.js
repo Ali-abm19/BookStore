@@ -17,7 +17,6 @@ export default function UpdateUserProfile({ userInfoUpdate, setUserInfoUpdate })
                 variant="outlined"
                 helperText="enter the new or old password"
                 type='password'
-                required='true'
                 onChange={changeHandler}
             />
             <TextField

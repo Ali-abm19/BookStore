@@ -27,7 +27,7 @@ export default function Products({ setCartBooks, cartBooks }) {
   const [min, setMin] = useState(0);
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
-  const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books?limit=${limit}&offset=${(page - 1) * limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}&SearchByAuthor=${author}`;
+  const url = `http://localhost:5125/api/v1/Books?limit=${limit > 0 ? Math.round(limit) : 4}&offset=${(page - 1) * limit}&SearchByTitle=${title}&MaxPrice=${max}&MinPrice=${min}&SearchByAuthor=${author}`;
 
   const handleChange = (event, value) => {
     // const nextValue = value;
@@ -60,7 +60,6 @@ export default function Products({ setCartBooks, cartBooks }) {
     return <p>{error}</p>;
   }
 
-  // //console.log(cartBooks);
   function addToCart(book) {
     if (!(cartBooks.some((b) => b.book.bookId === book.bookId))) {
       setCartBooks([...cartBooks, { quantity: 1, book: book }]);
@@ -75,7 +74,8 @@ export default function Products({ setCartBooks, cartBooks }) {
     <div className={styles.OuterContainer}>
       <SearchForBook
         setTitle={setTitle}
-        setAuthor={setAuthor} />
+        setAuthor={setAuthor}
+        setLimit={setLimit} />
       <MinMaxPrice
         setMaxPrice={setMax}
         setMinPrice={setMin}

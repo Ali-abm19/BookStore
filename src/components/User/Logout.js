@@ -8,7 +8,7 @@ export default function Logout({ user, setUser }) {
 
     function signOutHandler() {
         setUser(null);
-        localStorage.setItem("token", "");
+        localStorage.setItem("UserInfo", "");
         enqueueSnackbar('You successfully signed out!', { variant: 'success' });
         navi("/home");
     }

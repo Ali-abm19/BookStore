@@ -9,14 +9,13 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
   const [cartFromDB, setCartFromDB] = useState();
   const [loadingCart, setLoadingCart] = useState(true);
-  const token = localStorage.getItem('token')
+  const token = JSON.parse(localStorage.getItem('UserInfo')).token;
   const navigate = useNavigate();
-
   //functions
 
   function createCart() {
     if (user !== null) {
-      axios.post("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Carts", { "userId": user.userId })
+      axios.post("http://localhost:5125/api/v1/Carts", { "userId": user.userId })
         //note that this method will NOT create a cart if the user already have one
         //instead it will return the previous cart
         //new: unless the previous cart was made into an Order
@@ -38,7 +37,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
   function submitAllItemsToBackend(cartBooks) {
     if (user != null) {
       cartBooks.map((item) => {
-        axios.post("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/CartItems", {
+        axios.post("http://localhost:5125/api/v1/CartItems", {
           bookId: item.book.bookId,
           cartId: cartFromDB.cartId,
           quantity: item.quantity
@@ -61,7 +60,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
   async function getCart(id) {
     try {
-      const response = await axios.get("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Carts/" + id,
+      const response = await axios.get("http://localhost:5125/api/v1/Carts/" + id,
         { headers: { Authorization: `Bearer ${token}` }, }
       )
       setCartFromDB(response.data)
@@ -75,7 +74,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
   async function updateCartItem(id, newQuantity) {
     try {
-      const response = await axios.put("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/CartItems/" + id, { "quantity": newQuantity }, { headers: { Authorization: `Bearer ${token}` }, })
+      const response = await axios.put("http://localhost:5125/api/v1/CartItems/" + id, { "quantity": newQuantity }, { headers: { Authorization: `Bearer ${token}` }, })
       const data = response;
       //console.log(data);
     } catch (error) {
@@ -85,7 +84,7 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
 
   async function deleteCartItem(id) {
     try {
-      const response = axios.delete("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/CartItems/" + id,
+      const response = axios.delete("http://localhost:5125/api/v1/CartItems/" + id,
         { headers: { Authorization: `Bearer ${token}` }, }
       )
       //console.log(response);
@@ -135,8 +134,9 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
   }
 
   async function placeOrder() {
+    if(cartFromDB.cartItems.length>0){
     try {
-      const response = await axios.post("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Orders", { "cartId": cartFromDB.cartId }, { headers: { Authorization: `Bearer ${token}` }, })
+      const response = await axios.post("http://localhost:5125/api/v1/Orders", { "cartId": cartFromDB.cartId }, { headers: { Authorization: `Bearer ${token}` }, })
       enqueueSnackbar('Order Created', { variant: 'success' });
       setCartFromDB(null);
       setCartBooks([])
@@ -144,6 +144,10 @@ export default function CartListBackend({ user, cartBooks, setCartBooks }) {
     } catch (error) {
       enqueueSnackbar(error.response.data.message || error.message, { variant: 'error' })
     }
+  }
+  else{
+    enqueueSnackbar('Cart is empty', {variant:'error'})
+  }
   }
 
 

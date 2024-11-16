@@ -16,7 +16,7 @@ import ProfilePage from "./pages/ProfilePage";
 import DashboardPage from "./pages/DashboardPage";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/CheckoutPage";
-
+import OrdersPage from "./pages/OrdersPage";
 
 
 function App() {
@@ -49,7 +49,10 @@ function App() {
         },
         {
           path: '/books/:id',
-          element: <SingleProductPage />
+          element: <SingleProductPage
+            setCartBooks={setCartBooks}
+            cartBooks={cartBooks}
+          />
         },
         {
           path: '/signIn',
@@ -101,6 +104,11 @@ function App() {
             user={user}
             cartBooks={cartBooks}
             setCartBooks={setCartBooks}
+          />
+        },
+        {
+          path: '/myOrders',
+          element: <OrdersPage
           />
         },
         {

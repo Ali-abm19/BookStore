@@ -12,7 +12,7 @@ export default function CreateBook({ newBook, setNewBook }) {
     }
 
     function fetchCategories() {
-        axios.get("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Categories")
+        axios.get("http://localhost:5125/api/v1/Categories")
             .then((response) => {
                 setCategories(response.data);
                 setLoadingCategories(false);

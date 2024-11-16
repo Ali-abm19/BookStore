@@ -12,7 +12,7 @@ export default function SignIn({ token, setToken, user, setUser }) {
     const [error, setError] = useState("");
     // const [isLoadingSignIn, setIsLoadingSignIn] = useState(false);
     const navigate = useNavigate();
-    const urlSignIn = "https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users/signIn"
+    const urlSignIn = "http://localhost:5125/api/v1/Users/signIn"
 
     function userSignIn() {
 
@@ -26,7 +26,7 @@ export default function SignIn({ token, setToken, user, setUser }) {
                 //console.log(response);
                 enqueueSnackbar("Welcome " + response.data.dto.name, { variant: 'success', autoHideDuration: 3000 });
                 setToken(response.data.token);
-                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("UserInfo", JSON.stringify(response.data));
                 setUser(response.data.dto);
                 // //console.log(user);
                 navigate('/home');

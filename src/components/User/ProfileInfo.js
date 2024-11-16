@@ -7,7 +7,6 @@ import UpdateUserProfile from '../Forms/UpdateUserProfile';
 import { enqueueSnackbar } from 'notistack';
 
 export default function ProfileInfo({ user, setUser }) {
-
     const [userInfoUpdate, setUserInfoUpdate] = useState(
         {
             name: user.name,
@@ -18,22 +17,19 @@ export default function ProfileInfo({ user, setUser }) {
     );
 
     function updateUserProfile() {
-        const token = localStorage.getItem("token");
+        const token = JSON.parse(localStorage.getItem('UserInfo')).token
         //console.log(userInfoUpdate)
         axios
             .put(
-                `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/users/${user.userId}`, userInfoUpdate
+                `http://localhost:5125/api/v1/users/${user.userId}`, userInfoUpdate
                 ,
                 { headers: { Authorization: `Bearer ${token}` }, }
 
 
             )
             .then((res) => {
-                // BE: return user with new info
-                //console.log(res);
                 setUser(res.data);
                 enqueueSnackbar("your account was updated", { variant: 'success', autoHideDuration: 5000 });
-                // setAnchorEl(null);
 
             })
             .catch((error) => {
