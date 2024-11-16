@@ -1,48 +1,77 @@
-# Project: Frontend for E-commerce Website
+# Bookstore Backend Project 📚
 
-This project is a frontend for an e-commerce website, developed using modern web technologies. It provides an interactive platform for users to browse and purchase products, while also offering a management dashboard for administrators to handle products, users, and orders. The project is built with a focus on a smooth and intuitive user experience, with added functionalities for searching, filtering, and managing products.
+## Project Overview
+This is a continuation of the backend solution in [this repository](https://github.com/Ali-abm19/BookStoreAPI). Here, we provide the frontend with built with JavaScript and React.
 
-***Deadline: 14/11/2024***
+## Features ✨
+- **User Features**:
+  - Register new user (Sign Up)
+  - Sign In
+  - Admin and Customer Roles
+  - Update Profile Information
 
-### Level 1: Basic Requirements
+- **Shopping Features**:
+  - Navigate the Books with title and author filters
+  - Navigate the books using price range
+  - Add Books to the cart
+  - Checkout to use backend cart
+  - Place Order
 
-**Pages to Create:**
+- **Admin**:
+  - Create new books
+  - Delete and edit books
+  - Delete Users
+  - Create Categories
+  - Delete Orders
 
-1. Home page
-2. Product page(list all the products)
-3. Product Detail(contain the details of a product)
-4. Dashboard page
 
-**Functionalities for a Visitor:**
 
-- Get list of products
-- Search products by name
-- Filter products price
-- Add products to a cart
-- Remove products from a cart
+## Used JavaScript Libraries
 
-**Functionalities for an Admin:**
+- **React**
+- **MUI**
+- **Axios**
+- **notistack**
 
-- Add a new product, update info of a product, remove a product
+## Prerequisites
 
-### Level 2: Additional Requirements
+- Install Node.js : [https://nodejs.org/en/](https://nodejs.org/en/)
 
-**Authentication:**
+## Getting Started
 
-- Implement register and login functionality via email and password
-- Protect the routes based on login and admin status
+### 1. Clone the repository:
 
-**Functionalities for an Admin:**
+```bash
+git clone git@github.com:Ali-abm19/BookStore.git
+```
 
-- list all users, delete a user.
-- list all orders
+- Install the dependencies
 
-### Level 3: Bonus Requirement (Optional)
+```bash
+npm install
+```
 
-- Messages, show loading, success, and error messages (e.g., when loading products list or adding new product)
-- Implement pagination feature
-- Create a Profile Page (only available if user logs in), implement editing user profile feature (user can change first name, last name)
+- Run the application
 
-`Please note that the bonus requirements and reviews are optional and can be completed if you have additional time and advanced skills.`
+```bash
+npm start
+```
 
-Happy coding!
+
+## Project structure
+
+
+## API Endpoints
+
+You can check the backend repository for more information on the API: [Here](https://github.com/Ali-abm19/BookStoreAPI)
+
+## Deployment
+
+The website is deployed and can be accessed at: [This Repository](https://sda-3-online-fe-repo-zap9.onrender.com)
+
+**Made By:**  
+- Ali (@Ali-abm19)
+
+## License
+
+This project is licensed under the MIT License.
