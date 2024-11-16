@@ -67,7 +67,7 @@ You can check the backend repository for more information on the API: [Here](htt
 
 ## Deployment
 
-The website is deployed and can be accessed at: [This Repository](https://sda-3-online-fe-repo-zap9.onrender.com)
+The website is deployed and can be accessed at: [This Link](https://sda-3-online-fe-repo-zap9.onrender.com)
 
 **Made By:**  
 - Ali (@Ali-abm19)
