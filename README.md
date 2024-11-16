@@ -1,7 +1,7 @@
-# Bookstore Backend Project 📚
+# Bombadil's Archives - a Bookstore Project 📚
 
 ## Project Overview
-This is a continuation of the backend solution in [this repository](https://github.com/Ali-abm19/BookStoreAPI). Here, we provide the frontend with built with JavaScript and React.
+This is a continuation of the backend solution in [this repository](https://github.com/Ali-abm19/BookStoreAPI). Here, we provide the frontend part, built with JavaScript and React.
 
 ## Features ✨
 - **User Features**:
