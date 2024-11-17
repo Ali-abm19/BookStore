@@ -88,9 +88,9 @@ export default function ProductsInDataGrid({ books, deleteHandler, updateHandler
                 checkboxSelection
                 disableRowSelectionOnClick
                 onRowSelectionModelChange={(rows) => setSelected(rows)}
-                processRowUpdate={(updatedRow, originalRow) => {
-                    //console.log(updatedRow)
+                processRowUpdate={(updatedRow, oldRow) => {
                     updateHandler(updatedRow);
+                    return updatedRow;
                 }
                 }
 

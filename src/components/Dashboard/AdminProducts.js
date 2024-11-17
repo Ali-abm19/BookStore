@@ -44,7 +44,7 @@ export default function AdminProducts() {
       .then((response) => enqueueSnackbar(`Book was updated`, { variant: 'info' })
       )
       .catch((error) => enqueueSnackbar(error.message, { variant: 'error' }))
-    fetchListFromAPI();
+    // fetchListFromAPI();
   }
 
   function createBookHandler(book) {
@@ -110,7 +110,8 @@ export default function AdminProducts() {
       <ProductsInDataGrid
         books={fetchedBooks}
         deleteHandler={deleteHandler}
-        updateHandler={updateHandler} />
+        updateHandler={updateHandler}
+        fetchListFromAPI={fetchListFromAPI} />
       <br />
 
     </div>
