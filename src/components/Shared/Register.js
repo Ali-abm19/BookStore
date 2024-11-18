@@ -9,6 +9,9 @@ import RegisterForm from '../Forms/RegisterForm';
 export default function Register({ isRegistered, token, setToken, user, setUser }) {
     const [Email, setEmail] = useState("");
     const [Password, setPassword] = useState("");
+    const [Name, setName] = useState("");
+    const [Address, setAddress] = useState("");
+    const [Phone, setPhone] = useState("");
     const [error, setError] = useState("");
     const [isLoadingSignUp, setIsLoadingSignUp] = useState(true);
     const navigate = useNavigate();
@@ -19,6 +22,9 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
         setIsLoadingSignUp(true);
         axios.post(urlSignup,
             {
+                "name": Name,
+                "address": Address,
+                "phone": Phone,
                 "email": Email.toString(),
                 "password": Password.toString()
             }
@@ -32,11 +38,16 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
             .catch((e) => {
                 setIsLoadingSignUp(false)
                 setError(e);
-                //console.log(e);
                 if (error.status === 400) {
+                    try{
                     enqueueSnackbar(e.response.data.errors.Email[0], { variant: 'error', autoHideDuration: 5000 });
                     enqueueSnackbar(e.response.data.errors.Password[0], { variant: 'error', autoHideDuration: 5000 });
                 }
+                catch(er){
+                        enqueueSnackbar(e, { variant: 'error', autoHideDuration: 5000 });
+
+                }
+            }
             });
     }
 
@@ -49,10 +60,18 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
     }
 
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            flexDirection:'column'
+        }}>
             <RegisterForm
                 setEmail={setEmail}
-                setPassword={setPassword} />
+                setPassword={setPassword}
+                setAddress={setAddress}
+                setPhone={setPhone}
+                setName={setName}
+            />
             <Button style={{ color: "4A7D9A" }} variant="outlined" onClick={registerNewUser} >Register</Button>
 
             <p>If you already have an account:</p>

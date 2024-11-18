@@ -7,7 +7,7 @@ import Logout from '../User/Logout'
 import { enqueueSnackbar } from 'notistack'
 
 export default function NavBar({ user, setUser }) {
-  // //console.log("from navbar " + user.role);
+
   if (!user) {
     try { setUser(JSON.parse(localStorage.getItem('UserInfo')).dto); }
     catch (e) {
