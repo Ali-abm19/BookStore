@@ -14,7 +14,7 @@ export default function SingleProductPage({ product, setCartBooks, cartBooks }) 
     const [fetchedProduct, setFetchedProduct] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    let url = "http://localhost:5125/api/v1/Books/" + productId;
+    let url = "https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books/" + productId;
 
     function addToCart(book) {
         if (!(cartBooks.some((b) => b.book.bookId === book.bookId))) {

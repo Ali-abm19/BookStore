@@ -12,7 +12,7 @@ export default function AdminCategories() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [category, setCategory] = useState([]);
-    const url = `http://localhost:5125/api/v1/Categories`;
+    const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Categories`;
     const token = JSON.parse(localStorage.getItem('UserInfo')).token
 
     function fetchListFromAPI() {
@@ -32,7 +32,7 @@ export default function AdminCategories() {
     }, []);
 
     function createCateHandler() {
-        axios.post("http://localhost:5125/api/v1/Categories", category,
+        axios.post("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Categories", category,
             { headers: { Authorization: `Bearer ${token}` } }
         )
             .then((response) => {

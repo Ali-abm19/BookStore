@@ -11,7 +11,7 @@ export default function OrdersPage() {
 
     function fetchListFromAPI() {
         const token = JSON.parse(localStorage.getItem('UserInfo')).token;
-        axios.get("http://localhost:5125/api/v1/Orders/UserOrders",
+        axios.get("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Orders/UserOrders",
             { headers: { Authorization: `Bearer ${token}` } }
         )
             .then((response) => {

@@ -21,7 +21,7 @@ export default function ProfileInfo({ user, setUser }) {
         //console.log(userInfoUpdate)
         axios
             .put(
-                `http://localhost:5125/api/v1/users/${user.userId}`, userInfoUpdate
+                `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/users/${user.userId}`, userInfoUpdate
                 ,
                 { headers: { Authorization: `Bearer ${token}` }, }
 

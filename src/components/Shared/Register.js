@@ -16,7 +16,7 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
     const [isLoadingSignUp, setIsLoadingSignUp] = useState(true);
     const navigate = useNavigate();
 
-    let urlSignup = "http://localhost:5125/api/v1/Users/signUp"
+    let urlSignup = "https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Users/signUp"
 
     function registerNewUser() {
         setIsLoadingSignUp(true);
@@ -39,15 +39,15 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
                 setIsLoadingSignUp(false)
                 setError(e);
                 if (error.status === 400) {
-                    try{
-                    enqueueSnackbar(e.response.data.errors.Email[0], { variant: 'error', autoHideDuration: 5000 });
-                    enqueueSnackbar(e.response.data.errors.Password[0], { variant: 'error', autoHideDuration: 5000 });
-                }
-                catch(er){
+                    try {
+                        enqueueSnackbar(e.response.data.errors.Email[0], { variant: 'error', autoHideDuration: 5000 });
+                        enqueueSnackbar(e.response.data.errors.Password[0], { variant: 'error', autoHideDuration: 5000 });
+                    }
+                    catch (er) {
                         enqueueSnackbar(e, { variant: 'error', autoHideDuration: 5000 });
 
+                    }
                 }
-            }
             });
     }
 
@@ -63,7 +63,7 @@ export default function Register({ isRegistered, token, setToken, user, setUser 
         <div style={{
             display: 'flex',
             alignItems: 'center', justifyContent: 'center',
-            flexDirection:'column'
+            flexDirection: 'column'
         }}>
             <RegisterForm
                 setEmail={setEmail}

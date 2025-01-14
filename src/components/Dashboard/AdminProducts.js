@@ -13,11 +13,11 @@ export default function AdminProducts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [newBook, setNewBook] = useState(null);
-  const url = `http://localhost:5125/api/v1/Books?limit=${1000}`;
+  const url = `https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books?limit=${1000}`;
   const token = JSON.parse(localStorage.getItem('UserInfo')).token
 
   function deleteHandler(book) {
-    axios.delete("http://localhost:5125/api/v1/Books/" + book,
+    axios.delete("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books/" + book,
       { headers: { Authorization: `Bearer ${token}` }, })
       .then((response) => {
         enqueueSnackbar(`Book was Deleted`, { variant: 'info' })
@@ -28,7 +28,7 @@ export default function AdminProducts() {
   }
 
   function updateHandler(book) {
-    axios.put("http://localhost:5125/api/v1/Books/" + book.id, {
+    axios.put("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books/" + book.id, {
 
       "isbn": book.isbn,
       "title": book.title,
@@ -48,7 +48,7 @@ export default function AdminProducts() {
   }
 
   function createBookHandler(book) {
-    axios.post("http://localhost:5125/api/v1/Books/", book,
+    axios.post("https://sda-3-online-backend-teamwork-7fzj.onrender.com/api/v1/Books/", book,
       { headers: { Authorization: `Bearer ${token}` }, })
       .then((response) => {
         enqueueSnackbar(`Book ${book.title} was Created`, { variant: 'success' })
